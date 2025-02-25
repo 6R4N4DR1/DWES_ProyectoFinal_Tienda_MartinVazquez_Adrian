@@ -6,84 +6,76 @@
     use PDOStatement;
 
     class BaseDatos{
-
-        private string $servidor;
-        private string $usuario;
-        private string $contrasena;
-        private string $nombre;
-
+        private string $localhost;
+        private string $user;
+        private string $password;
+        private string $tienda;
         private PDO $conexion;
-        private PDOStatement $resultado;
+        private PDOStatement $consulta;
 
-        // Constructor de la base de datos
-
+        // Constructor de la clase, establece la conexión con la base de datos
         public function __construct(){
-        
             try{
+                $this->localhost = DB_HOST;
+                $this->user = DB_USER;
+                $this->password = DB_PASS;
+                $this->tienda = DB_NAME;
 
-                $this->servidor = DB_HOST;
-                $this->usuario = DB_USER;
-                $this->contrasena = DB_PASS;
-                $this->nombre = DB_NAME;
-
-                $this->conexion = new PDO("mysql:host=$this->servidor;dbname=$this->nombre", $this->usuario, $this->contrasena);
-
+                // Crea una nueva conexión PDO
+                $this->conexion = new PDO("mysql:host=$this->localhost;dbname=$this->tienda", $this->user, $this->password);
                 $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $this->conexion->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-
-            }catch(PDOException $e){
-
-                echo $e->getMessage();
-
+            }catch(PDOException $PDOe){
+                // Muestra el mensaje de error por defecto en caso de fallo en la conexión
+                echo $PDOe->getMessage();
             }
-        
         }
 
-        // Método para ejecutar sentencias SQL con parámetros opcionales
-
-        public function ejecutar(string $sql, array $parametros = []): void{
-
+        // Ejecuta una consulta SQL con parámetros opcionales
+        public function ejecutarConsulta(string $sql, array $parametros = []): void{
             try{
-
-                $this->resultado = $this->conexion->prepare($sql);
-                $this->resultado->execute($parametros);
-
-            }catch(PDOException $e){
-
-                echo $e->getMessage();
-
+                $this->consulta = $this->conexion->prepare($sql);
+                $this->consulta->execute($parametros);
+            }catch(PDOException $PDOe){
+                // Muestra el mensaje de error por defecto en caso de fallo en la conexión
+                echo $PDOe->getMessage();
             }
-
         }
 
-        /*
-        * Métodos para obtener resultados de la base de datos
-        */
 
+        // Métodos para obtener resultados de la base de datos
+
+        // Obtiene el siguiente registro de la consulta
         public function getSiguienteRegistro(): ?array{
-            return $this->resultado->fetch();
+            return $this->consulta->fetch();
         }
 
+        // Obtiene todos los registros de la consulta
         public function getRegistros(): array{
-            return $this->resultado->fetchAll();
+            return $this->consulta->fetchAll();
         }
 
+        // Obtiene el número de registros de la consulta
         public function getNumeroRegistros(): int{
-            return $this->resultado->rowCount();
+            return $this->consulta->rowCount();
         }
 
+        // Obtiene el último ID insertado en la base de datos
         public function getUltimoId(): string{
             return $this->conexion->lastInsertId();
         }
 
+        // Inicia una transacción
         public function iniciarCambios(): void{
             $this->conexion->beginTransaction();
         }
 
+        // Confirma una transacción
         public function guardarCambios(): void{
             $this->conexion->commit();
         }
 
+        // Revierte una transacción
         public function descartarCambios(): void{
             $this->conexion->rollBack();
         }

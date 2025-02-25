@@ -1,0 +1,239 @@
+/* Importa las fuentes */
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('../fonts/Roboto_Condensed-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('../fonts/Roboto_Condensed-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('../fonts/Roboto_Condensed-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+body {
+    margin: 0;
+    background-color: #FFFFFF; /* Color de fondo blanco */
+    background: url(../images/bg.png);
+    color: #000000; /* Color del texto negro */
+    font-family: 'Roboto Condensed', sans-serif; /* Fuente personalizada */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenedor horizontalmente */
+    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% de la altura de la ventana */
+}
+
+#contenedor {
+    width: 80%; /* Ancho del contenedor */
+    max-width: 1200px; /* Ancho máximo del contenedor */
+    background-color: #FFFFFF; /* Fondo blanco para el contenedor */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra gris */
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Permite que el contenedor crezca y ocupe el espacio disponible */
+}
+
+#contenido {
+    display: flex; /* Flexbox para alinear el sidebar y el contenido principal */
+    flex: 1; /* Permite que el contenido principal crezca y ocupe el espacio disponible */
+}
+
+/* Estilos para el header */
+#header {
+    background-color: #8B0000; /* Color de fondo rojizo */
+    padding: 20px; /* Espaciado interno */
+    border-bottom: 2px solid #FFD700; /* Línea inferior amarilla */
+}
+
+#logo {
+    display: flex; /* Flexbox para alinear elementos */
+    align-items: center; /* Alineación vertical */
+}
+
+#logo img {
+    height: 50px; /* Altura de la imagen */
+    margin-right: 15px; /* Espaciado a la derecha de la imagen */
+}
+
+#logo h1 {
+    font-size: 24px; /* Tamaño de fuente */
+    color: #FFFFFF; /* Color del texto blanco */
+    margin: 0; /* Sin margen */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    font-family: 'Roboto Condensed', sans-serif; /* Fuente personalizada */
+}
+
+#logo a {
+    text-decoration: none; /* Sin subrayado */
+    color: inherit; /* Color del enlace igual al del texto */
+}
+
+/* Estilos para el menú de navegación */
+nav {
+    background-color: #FFD700; /* Color de fondo amarillo */
+    padding: 10px;
+}
+
+nav ul {
+    list-style: none; /* Sin viñetas */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Flexbox para alinear elementos */
+    justify-content: space-around; /* Espaciado entre elementos */
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #8B0000; /* Color del texto rojizo */
+    text-decoration: none; /* Sin subrayado */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+nav ul li a:hover {
+    color: #FFFFFF; /* Color del texto al pasar el ratón */
+}
+
+/* Estilos para el sidebar */
+#sidebar {
+    background-color: #F8F9FA; /* Color de fondo claro */
+    padding: 20px;
+    border-right: 2px solid #E9ECEF; /* Línea derecha */
+    width: 25%; /* Ancho del sidebar */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+#sidebar .block_aside {
+    margin-bottom: 20px;
+}
+
+#sidebar .block_aside form {
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar .block_aside label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#sidebar .block_aside input[type="email"],
+#sidebar .block_aside input[type="password"] {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    transition: border-color 0.3s ease; /* Transición suave para el borde */
+}
+
+#sidebar .block_aside input[type="email"]:focus,
+#sidebar .block_aside input[type="password"]:focus {
+    border-color: #8B0000; /* Color del borde al enfocar */
+}
+
+#sidebar .block_aside input[type="submit"] {
+    background-color: #8B0000; /* Color de fondo rojizo */
+    color: #FFFFFF; /* Color del texto blanco */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el fondo */
+}
+
+#sidebar .block_aside input[type="submit"]:hover {
+    background-color: #FFD700; /* Color de fondo al pasar el ratón */
+    color: #8B0000; /* Color del texto al pasar el ratón */
+}
+
+#sidebar .block_aside a {
+    display: block;
+    margin-top: 10px;
+    color: #8B0000; /* Color del texto rojizo */
+    text-decoration: none; /* Sin subrayado */
+    font-weight: bold;
+    transition: color 0.3s ease; /* Transición suave para el color */
+}
+
+#sidebar .block_aside a:hover {
+    color: #FFD700; /* Color del texto al pasar el ratón */
+}
+
+/* Estilos para el contenido principal */
+main {
+    padding: 20px;
+    width: 75%; /* Ancho del contenido principal */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en varias filas */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+.producto {
+    border: 1px solid #E9ECEF; /* Borde claro */
+    padding: 10px;
+    margin: 10px; /* Espaciado entre productos */
+    text-align: center;
+    width: 200px; /* Ancho fijo para los productos */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para la transformación y la sombra */
+}
+
+.producto:hover {
+    transform: translateY(-5px); /* Desplaza el producto hacia arriba al pasar el ratón */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+.producto img {
+    max-width: 100%;
+    height: auto;
+}
+
+.producto h2 {
+    font-size: 20px;
+    color: #8B0000; /* Color del texto rojizo */
+}
+
+.producto p {
+    font-size: 18px;
+    color: #000000; /* Color del texto negro */
+}
+
+.producto a {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #FFD700; /* Color de fondo amarillo */
+    color: #8B0000; /* Color del texto rojizo */
+    padding: 10px 20px;
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el fondo y el color */
+}
+
+.producto a:hover {
+    background-color: #8B0000; /* Color de fondo al pasar el ratón */
+    color: #FFFFFF; /* Color del texto al pasar el ratón */
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #8B0000; /* Color de fondo rojizo */
+    color: #FFFFFF; /* Color del texto blanco */
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #FFD700; /* Línea superior amarilla */
+    margin-top: auto; /* Empuja el footer al final de la página */
+}

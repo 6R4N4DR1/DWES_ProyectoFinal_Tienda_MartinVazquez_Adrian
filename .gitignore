@@ -1,1 +1,3 @@
+# El archivo .env contiene información sensible como credenciales de la base de datos
+# y no debe subirse al repositorio para evitar riesgos de seguridad.
 .env
