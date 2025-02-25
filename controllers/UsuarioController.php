@@ -1,14 +1,21 @@
 <?php
     namespace controllers;
 
+    use models\Usuario;
+    use helpers\Utils;
+
     class UsuarioController{
         public function register(){
             require_once 'views/usuario/registro.php';
         }
 
         public function save(){
-            if(isset($_POST)){
-                //Guardar en la base de datos
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : false;
+                $apellidos = isset($_POST['apellidos']) ? trim($_POST['apellidos']) : false;
+                $email = isset($_POST['email']) ? trim($_POST['email']) : false;
+                $password = isset($_POST['password']) ? trim($_POST['password']) : false;
+                $rol = isset($_POST['rol']) ? $_POST['rol'] : 'user';
             }
         }
 

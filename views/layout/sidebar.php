@@ -17,5 +17,4 @@
         </div>
     </aside>
 
-    <!-- Contenido principal -->
-    <main>
+    <!-- Contenido principal (aquí ira el main) -->
