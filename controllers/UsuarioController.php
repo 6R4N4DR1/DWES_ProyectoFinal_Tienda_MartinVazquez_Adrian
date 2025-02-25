@@ -3,7 +3,7 @@
 
     class UsuarioController{
         public function register(){
-            require_once 'views/usuario/formRegistro.php';
+            require_once 'views/usuario/registro.php';
         }
 
         public function save(){

@@ -3,7 +3,7 @@
 
     class ProductoController{
         public function destacados(){
-            echo "Controlador Producto, acción destacados";
+            require_once 'views/producto/destacados.php';
         }
 
         public function categoria(){
