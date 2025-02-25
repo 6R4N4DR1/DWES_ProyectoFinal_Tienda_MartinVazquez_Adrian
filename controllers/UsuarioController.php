@@ -2,11 +2,11 @@
     namespace controllers;
 
     class UsuarioController{
-        public function registro(){
-            require_once 'views/usuario/registro.php';
+        public function register(){
+            require_once 'views/usuario/formRegistro.php';
         }
 
-        public function guardar(){
+        public function save(){
             if(isset($_POST)){
                 //Guardar en la base de datos
             }
