@@ -70,6 +70,7 @@ body {
     margin: 0; /* Sin margen */
     text-transform: uppercase; /* Texto en mayúsculas */
     font-family: 'Roboto Condensed', sans-serif; /* Fuente personalizada */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra del texto */
 }
 
 #logo a {
@@ -81,6 +82,7 @@ body {
 nav {
     background-color: #FFD700; /* Color de fondo amarillo */
     padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra gris */
 }
 
 nav ul {
@@ -113,6 +115,15 @@ nav ul li a:hover {
     border-right: 2px solid #E9ECEF; /* Línea derecha */
     width: 25%; /* Ancho del sidebar */
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+#sidebar h3 {
+    background-color: #8B0000; /* Color de fondo rojizo */
+    color: #FFFFFF; /* Color del texto blanco */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra gris */
 }
 
 #sidebar .block_aside {
@@ -176,15 +187,41 @@ main {
     padding: 20px;
     width: 75%; /* Ancho del contenido principal */
     display: flex;
+    flex-direction: column; /* Alinea los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+}
+
+main h1 {
+    font-size: 28px; /* Tamaño de fuente */
+    color: #8B0000; /* Color del texto rojizo */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    text-align: center; /* Alineación centrada */
+    margin-bottom: 20px; /* Espaciado inferior */
+    position: relative; /* Posicionamiento relativo para la barra */
+}
+
+main h1::after {
+    content: ''; /* Contenido vacío para la barra */
+    display: block;
+    width: 50%; /* Ancho de la barra */
+    height: 2px; /* Altura de la barra */
+    background-color: #E9ECEF; /* Color de la barra */
+    margin: 10px auto 0; /* Márgenes */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra difuminada */
+}
+
+/* Estilos para los productos */
+.productos {
+    display: flex; /* Flexbox para alinear los productos en fila */
     flex-wrap: wrap; /* Permite que los elementos se ajusten en varias filas */
     justify-content: center; /* Centra los elementos horizontalmente */
-    box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
+    gap: 20px; /* Espaciado entre productos */
 }
 
 .producto {
     border: 1px solid #E9ECEF; /* Borde claro */
     padding: 10px;
-    margin: 10px; /* Espaciado entre productos */
     text-align: center;
     width: 200px; /* Ancho fijo para los productos */
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho total */
@@ -236,4 +273,5 @@ footer {
     padding: 10px;
     border-top: 2px solid #FFD700; /* Línea superior amarilla */
     margin-top: auto; /* Empuja el footer al final de la página */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Sombra gris */
 }
