@@ -21,9 +21,6 @@
     } elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
         // Si no se ha pasado ni controlador ni acción, usa el controlador por defecto
         $nombre_controlador = 'controllers\\' . CONTROLLER_DEFAULT . 'Controller';
-    } else {
-        echo "Controlador no encontrado"; // Quitar esto cuando se termine el proyecto
-        (new ErrorController())->index();
     }
     
     // Verifica si la clase del controlador existe
@@ -42,12 +39,10 @@
             $controlador->$action_default();
         } else {
             // Si no se encuentra la acción, muestra un mensaje de error y llama al controlador de errores para mostrar "Página no encontrada"
-            echo "Acción no encontrada";
             (new ErrorController())->index();
         }
     } else {
         // Si no se encuentra el controlador, muestra un mensaje de error y llama al controlador de errores para mostrar "Página no encontrada"
-        echo "Controlador no encontrado";
         (new ErrorController())->index();
     }
 
