@@ -1,6 +1,7 @@
 <IfModule mod_rewrite.c>
     # Activa el motor de reescritura de URLs
     RewriteEngine On
+
     # Define la página de error 404 (página no encontrada) personalizada
     ErrorDocument 404 http://localhost/dashboard/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/error/
 

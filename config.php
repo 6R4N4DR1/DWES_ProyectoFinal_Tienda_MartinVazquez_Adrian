@@ -11,4 +11,12 @@
 
     // URL base del proyecto
     define('BASE_URL', 'http://localhost/dashboard/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/');
+
+    /**
+     * Nota:
+     * No se ha utilizado Composer para la configuración de la base de datos desde el archivo .env
+     * porque modificar archivos internos de XAMPP y su configuración SSL podría romper el servidor XAMPP.
+     * Para evitar problemas y mantener la estabilidad del servidor, he optado por definir las constantes
+     * de configuración directamente en este archivo.
+     */
 ?>

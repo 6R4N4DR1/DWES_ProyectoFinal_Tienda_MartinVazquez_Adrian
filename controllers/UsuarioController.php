@@ -1,24 +1,40 @@
 <?php
     namespace controllers;
 
+    // Importa el modelo de Usuario y las utilidades
     use models\Usuario;
     use helpers\Utils;
 
+    /**
+     * Clase UsuarioController
+     * Controlador para gestionar las acciones relacionadas con los usuarios.
+     */
     class UsuarioController{
+        
+        /**
+         * Método register
+         * Carga la vista de registro de usuario.
+         */
         public function register(){
             require_once 'views/usuario/registro.php';
         }
 
+        /**
+         * Método save
+         * Guarda un nuevo usuario en la base de datos.
+         */
         public function save(){
             Utils::isIdentity();
 
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                // Recoge los datos del formulario
                 $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
                 $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : false;
                 $email = isset($_POST['email']) ? $_POST['email'] : false;
                 $password = isset($_POST['password']) ? $_POST['password'] : false;
                 $rol = isset($_POST['rol']) ? $_POST['rol'] : 'user';
 
+                // Guarda los datos del formulario en la sesión
                 $_SESSION['form_data'] = [
                     'nombre' => $nombre,
                     'apellidos' => $apellidos,
@@ -27,6 +43,7 @@
                     'rol' => $rol
                 ];
 
+                // Validación de los datos del formulario
                 if($nombre && $apellidos && $email && $password){
                     if(!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/", $nombre)){
                         $_SESSION['register'] = 'failed_nombre';
@@ -52,6 +69,7 @@
                         exit();
                     }
 
+                    // Crea un nuevo usuario y guarda los datos en la base de datos
                     $usuario = new Usuario();
                     $usuario->setNombre($nombre);
                     $usuario->setApellidos($apellidos);
@@ -84,6 +102,10 @@
             }
         }
 
+        /**
+         * Método loginCookies
+         * Carga la vista de login y gestiona el inicio de sesión con cookies.
+         */
         public function loginCookies(){
             if(isset($_SESSION['identity'])){
                 header('Location:'.BASE_URL);
@@ -113,18 +135,25 @@
             require_once 'views/usuario/login.php';
         }
 
+        /**
+         * Método login
+         * Gestiona el inicio de sesión de un usuario.
+         */
         public function login(){
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                // Recoge los datos del formulario
                 $email = isset($_POST['email']) ? $_POST['email'] : false;
                 $password = isset($_POST['password']) ? $_POST['password'] : false;
                 $recuerdame = isset($_POST['recuerdame']);
 
+                // Guarda los datos del formulario en la sesión
                 $_SESSION['form_data'] = [
                     'email' => $email,
                     'password' => $password,
                     'recuerdame' => $recuerdame
                 ];
 
+                // Validación de los datos del formulario
                 if($email && $password){
                     $usuario = new Usuario();
                     $usuario->setEmail($email);
@@ -134,6 +163,7 @@
                     if($usuario){
                         Utils::deleteSession('form_data');
 
+                        // Guarda los datos del usuario en la sesión
                         $_SESSION['identity'] = [
                             'id' => $usuario->getId(),
                             'nombre' => $usuario->getNombre(),
@@ -142,6 +172,7 @@
                             'rol' => $usuario->getRol()
                         ];
 
+                        // Gestiona la cookie de "Recuérdame"
                         if($recuerdame){
                             setcookie('recuerdame', $email, time() + 60*60*24*7);
                         }else{
@@ -170,6 +201,10 @@
             exit();
         }
 
+        /**
+         * Método logout
+         * Cierra la sesión del usuario.
+         */
         public function logout(){
             Utils::isIdentity();
             Utils::deleteSession('identity');
