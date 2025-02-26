@@ -27,9 +27,9 @@ DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
     │ └── (varios archivos .ttf) │
 
-    └── images/ │
+    └── images/
 
-    └── (varios archivos de imagen) │
+    │└── (varios archivos de imagen) │
 
     ├── controllers/ │
 
@@ -43,17 +43,17 @@ DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
     └── ProductoController.php │
 
-    ├── database/ │
+    ├── database/
 
-    └── database.sql │
+    │└── database.sql │
 
-    ├── helpers/ │
+    ├── helpers/
 
-    └── Utils.php │
+    │└── Utils.php │
 
-    ├── lib/ │
+    ├── lib/
 
-    └── BaseDatos.php │
+    │└── BaseDatos.php │
 
     ├── models/ │
 
