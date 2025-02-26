@@ -10,12 +10,11 @@
 
 Este proyecto es una aplicación web de una tienda de charcutería llamada "Charcutería de Don Manolo". La charcutería de Don Manolo es una charcutería de postín conocida por su secreto íntimo familiar sobre jamones y su corte perfecto. La aplicación permite a los usuarios registrarse, iniciar sesión, ver productos destacados, gestionar categorías, productos y pedidos, y realizar compras. El proyecto está desarrollado en PHP y utiliza una arquitectura MVC (Modelo-Vista-Controlador).
 
-
 ## Estructura del Proyecto
 
 La estructura del proyecto es la siguiente:
 
-DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │ 
+DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
     ├── assets/ │
 
@@ -105,7 +104,6 @@ DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
     └── index.php
 
-
 ## Explicación de los Ficheros
 
 ### Raíz del Proyecto
@@ -164,7 +162,7 @@ DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
 ## Enlaces
 
-- [Repositorio en GitHub](https://github.com/tu-usuario/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian)
+- [Repositorio en GitHub](https://github.com/6R4N4DR1/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/)
 - [Documentación Oficial de PHP](https://www.php.net/docs.php)
 - [Documentación de Composer](https://getcomposer.org/doc/)
 - [Documentación de PDO](https://www.php.net/manual/es/book.pdo.php)
