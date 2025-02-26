@@ -71,7 +71,7 @@ DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
     ├── categoria/ │
 
-    │ └──[index.php](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) │ 
+    │ └── index.php │
 
     ├── layout/ │ │
 
@@ -99,9 +99,9 @@ DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
     ├── .htaccess
 
-    ├──[autoload.php](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) 
+    ├──autoload.php
 
-    ├──[config.php](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) 
+    ├──config.php
 
     └──[index.php](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
 
