@@ -7,7 +7,7 @@
                 $accion_actual = $_GET['action'] ?? null;
             ?> 
             <?php if(!isset($_SESSION['identity'])): ?>
-                <a href="<?=BASE_URL?>usuario/register" class="boton">Registro de nuevo cliente</a>
+                <a href="<?=BASE_URL?>usuario/register" class="boton">Registrarse</a>
                 <a href="<?=BASE_URL?>usuario/loginCookies" class="boton">Iniciar sesi&oacute;n</a>
             <?php else: ?>
                 <?php
@@ -22,13 +22,14 @@
                 <div class="separator"></div>
                 <?php if($rol_actual === 'admin'): ?>
                     <h3>Gestiones de administrador</h3>
-                    <a href="#" class="boton">Gestionar categor&iacute;as</a>
-                    <a href="#" class="boton">Gestionar productos</a>
-                    <a href="#" class="boton">Gestionar pedidos</a>
                     <a href="#" class="boton">Gestionar usuarios</a>
+                    <a href="#" class="boton">Gestionar pedidos</a>
+                    <a href="#" class="boton">Gestionar productos</a>
+                    <a href="#" class="boton">Gestionar categor&iacute;as</a>
+                    
                     <div class="separator"></div>
                 <?php endif; ?>
-                
+
                 <h3>P&aacute;ginas</h3>
                 <a href="#" class="boton">Mis pedidos</a>
                 <a href="#" class="boton">Productos</a>
