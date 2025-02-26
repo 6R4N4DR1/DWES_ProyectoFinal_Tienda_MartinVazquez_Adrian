@@ -13,13 +13,15 @@
                 <input type="password" name="password" required>
                 <input type="submit" value="Enviar">
             </form>
+        </div>
         <?php else: ?>
             <h3><?=$_SESSION['identity']['nombre']?> <?=$_SESSION['identity']['apellidos']?> </h3>
         <?php endif; ?>    
-
+        <div class="block_aside">
             <a href="#">Mis pedidos</a>
             <a href="#">Gestionar pedidos</a>
             <a href="#">Gestionar categor&iacute;as</a>
+            <a href="<?=BASE_URL?>usuario/logout">Cerrar sesi&oacute;n</a>
         </div>
     </aside>
 

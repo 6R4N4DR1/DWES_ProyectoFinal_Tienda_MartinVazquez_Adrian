@@ -12,7 +12,7 @@
         <!-- Cabecera de la página -->
         <header id="header">
             <div id="logo">
-                <img src="<?=BASE_URL?>assets/images/donmanolo.png" alt="Jam&oacute;n Pata Negra Rico Rico Logo">
+                <img src="<?=BASE_URL?>assets/images/donmanolo.png" alt="Don Manolo retrato">
                 <a href="<?=BASE_URL?>index.php">
                     <h1>Tienda - La charcuter&iacute;a de Don Manolo</h1>
                 </a>
