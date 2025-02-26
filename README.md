@@ -99,11 +99,11 @@ DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/ │
 
     ├── .htaccess
 
-    ├──autoload.php
+    ├── autoload.php
 
-    ├──config.php
+    ├── config.php
 
-    └──[index.php](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+    └── index.php
 
 
 ## Explicación de los Ficheros
