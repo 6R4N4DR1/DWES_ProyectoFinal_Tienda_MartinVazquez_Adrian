@@ -7,24 +7,32 @@
                 $accion_actual = $_GET['action'] ?? null;
             ?> 
             <?php if(!isset($_SESSION['identity'])): ?>
-                <a href="<?=BASE_URL?>usuario/register">Registro de nuevo cliente</a>
-                <a href="<?=BASE_URL?>usuario/loginCookies">Iniciar sesi&oacute;n</a>
+                <a href="<?=BASE_URL?>usuario/register" class="boton">Registro de nuevo cliente</a>
+                <a href="<?=BASE_URL?>usuario/loginCookies" class="boton">Iniciar sesi&oacute;n</a>
             <?php else: ?>
                 <?php
                     $rol_actual = $_SESSION['identity']['rol'] ?? null;
                 ?>
 
+                <h3>Cuenta</h3>
+                <a href="#" class="enlaceRojo"><?= $_SESSION['identity']['nombre'] ?> <?= $_SESSION['identity']['apellidos'] ?></a>
+
+                <a href="<?=BASE_URL?>usuario/logout" class="enlaceRojo">Cerrar sesi&oacute;n</a>
+
+                <div class="separator"></div>
                 <?php if($rol_actual === 'admin'): ?>
-                    <a href="#">Gestionar categor&iacute;as</a>
-                    <a href="#">Gestionar productos</a>
-                    <a href="#">Gestionar pedidos</a>
-                    <a href="#">Gestionar usuarios</a>
+                    <h3>Gestiones de administrador</h3>
+                    <a href="#" class="boton">Gestionar categor&iacute;as</a>
+                    <a href="#" class="boton">Gestionar productos</a>
+                    <a href="#" class="boton">Gestionar pedidos</a>
+                    <a href="#" class="boton">Gestionar usuarios</a>
                     <div class="separator"></div>
                 <?php endif; ?>
-
-                <a href="#"><?= $_SESSION['identity']['nombre'] ?> <?= $_SESSION['identity']['apellidos'] ?></a>
-
-                <a href="<?=BASE_URL?>usuario/logout">Cerrar sesi&oacute;n</a>
+                
+                <h3>P&aacute;ginas</h3>
+                <a href="#" class="boton">Mis pedidos</a>
+                <a href="#" class="boton">Productos</a>
+                <a href="#" class="boton">Categor&iacute;as</a>
             <?php endif; ?>
         </div>
     </aside>
