@@ -2,6 +2,7 @@
     namespace models;
 
     use lib\BaseDatos;
+    use helpers\Utils;
 
     class Usuario{
         private int $id;
@@ -17,7 +18,6 @@
         }
 
         //Getter y Setters
-
         public function getId(): int{
             return $this->id;
         }
@@ -64,6 +64,38 @@
 
         public function setRol(string $rol): void{
             $this->rol = $rol;
+        }
+
+        public function guardar(){
+            $consultaSQL = "INSERT INTO usuarios VALUES(null, :nombre, :apellidos, :email, :password, :rol)";
+            $this->baseDatos->ejecutarConsulta($consultaSQL, [
+                ':nombre' => $this->nombre,
+                ':apellidos' => $this->apellidos,
+                ':email' => $this->email,
+                ':password' => Utils::cifrarPassword($this->password),
+                ':rol' => $this->rol
+            ]);
+
+            return $this->baseDatos->getNumeroRegistros() == 1;
+        }
+
+        public function login(){
+            $resultado = false;
+            $email = $this->email;
+            $password = $this->password;
+
+            $consultaSQL = "SELECT id, password FROM usuarios WHERE email = '$email'";
+            $this->baseDatos->ejecutarConsulta($consultaSQL, [':email' => $email]);
+
+            if($this->baseDatos->getNumeroRegistros() == 1){
+                $usuario = $this->baseDatos->getNextRegistro();
+
+                $verify = password_verify($password, $usuario['password']);
+                if($verify){
+                    $resultado = $usuario;
+                }
+            }
+            return $resultado;
         }
 
         

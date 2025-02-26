@@ -267,6 +267,38 @@ main h1::after {
     color: #FFFFFF; /* Color del texto al pasar el ratón */
 }
 
+/* Estilos para el botón dentro del enlace */
+a .boton {
+    display: inline-block;
+    background-color: #8B0000; /* Color de fondo rojizo */
+    color: #FFFFFF; /* Color del texto blanco */
+    padding: 10px 20px;
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el fondo y el color */
+    cursor: pointer;
+    border: none; /* Sin borde */
+}
+
+a .boton:hover {
+    background-color: #FFD700; /* Color de fondo al pasar el ratón */
+    color: #8B0000; /* Color del texto al pasar el ratón */
+}
+
+/* Estilos para los mensajes de éxito y error */
+.completado {
+    color: #28a745; /* Color verde */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.fallido, .error {
+    color: #dc3545; /* Color rojo */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 /* Estilos para el formulario de registro */
 form {
     display: flex;

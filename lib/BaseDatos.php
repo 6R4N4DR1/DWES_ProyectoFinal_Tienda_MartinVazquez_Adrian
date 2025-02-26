@@ -46,7 +46,7 @@
         // Métodos para obtener resultados de la base de datos
 
         // Obtiene el siguiente registro de la consulta
-        public function getSiguienteRegistro(): ?array{
+        public function getNextRegistro(): ?array{
             return $this->consulta->fetch();
         }
 
