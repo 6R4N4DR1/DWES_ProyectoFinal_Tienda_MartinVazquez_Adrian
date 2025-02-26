@@ -172,7 +172,6 @@
 
         public function logout(){
             Utils::isIdentity();
-
             Utils::deleteSession('identity');
             Utils::deleteSession('admin');
 
