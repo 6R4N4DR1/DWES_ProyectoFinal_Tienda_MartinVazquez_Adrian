@@ -18,7 +18,6 @@
                 $email = isset($_POST['email']) ? $_POST['email'] : false;
                 $password = isset($_POST['password']) ? $_POST['password'] : false;
                 $rol = isset($_POST['rol']) ? $_POST['rol'] : 'user';
-            
 
                 $_SESSION['form_data'] = [
                     'nombre' => $nombre,
@@ -63,15 +62,20 @@
                     if($usuario->guardar()){
                         Utils::deleteSession('form_data');
                         $_SESSION['register'] = 'complete';
-                        header("Location:" . BASE_URL . "usuario/register");
+                        if(isset($_SESSION['admin'])){
+                            Utils::deleteSession('register');
+                            header("Location:" . BASE_URL . "usuario/admin" . (isset($_SESSION['pag']) ? "&pag=" . $_SESSION['pag'] : ""));
+                        }else{
+                            header("Location:" . BASE_URL . "usuario/register");
+                        }
                     }else{
                         $_SESSION['register'] = 'failed';
-                        header('Location:'.BASE_URL.'usuario/register');
+                        header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
                 }else{
                     $_SESSION['register'] = 'failed';
-                    header('Location:'.BASE_URL.'usuario/register');
+                    header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                     exit();
                 }
             }else{
@@ -80,41 +84,103 @@
             }
         }
 
-        public function login(){
-            if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                $usuario = new Usuario();
-                $usuario->setEmail($_POST['email']);
-                $usuario->setPassword($_POST['password']);
-                $identity = $usuario->login();
+        public function loginCookies(){
+            if(isset($_SESSION['identity'])){
+                header('Location:'.BASE_URL);
+            }
 
-                $_SESSION['form_data'] = [
-                    'email' => $usuario->getEmail(),
-                    'password' => $usuario->getPassword()
-                ];
+            if(isset($_COOKIE['recuerdame'])){
+                $email = $_COOKIE['recuerdame'];
+                $usuario = Usuario::getUserPorEmail($email);
 
-                if($identity && is_object($identity)){
-                    $_SESSION['identity'] = $identity;
+                if($usuario){
+                    $_SESSION['identity'] = [
+                        'id' => $usuario->getId(),
+                        'nombre' => $usuario->getNombre(),
+                        'apellidos' => $usuario->getApellidos(),
+                        'email' => $usuario->getEmail(),
+                        'rol' => $usuario->getRol()
+                    ];
 
-                    if($identity->rol === 'admin'){
+                    if($usuario->getRol() === 'admin'){
                         $_SESSION['admin'] = true;
                     }
+
+                    header('Location:'.BASE_URL);
+                    exit();
+                }
+            }
+            require_once 'views/usuario/login.php';
+        }
+
+        public function login(){
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $email = isset($_POST['email']) ? $_POST['email'] : false;
+                $password = isset($_POST['password']) ? $_POST['password'] : false;
+                $recuerdame = isset($_POST['recuerdame']);
+
+                $_SESSION['form_data'] = [
+                    'email' => $email,
+                    'password' => $password,
+                    'recuerdame' => $recuerdame
+                ];
+
+                if($email && $password){
+                    $usuario = new Usuario();
+                    $usuario->setEmail($email);
+                    $usuario->setPassword($password);
+                    $usuario = $usuario->login();
+
+                    if($usuario){
+                        Utils::deleteSession('form_data');
+
+                        $_SESSION['identity'] = [
+                            'id' => $usuario->getId(),
+                            'nombre' => $usuario->getNombre(),
+                            'apellidos' => $usuario->getApellidos(),
+                            'email' => $usuario->getEmail(),
+                            'rol' => $usuario->getRol()
+                        ];
+
+                        if($recuerdame){
+                            setcookie('recuerdame', $email, time() + 60*60*24*7);
+                        }else{
+                            if(isset($_COOKIE['recuerdame'])){
+                                setcookie('recuerdame', $email, time() - 1);
+                            }
+                        }
+
+                        if($usuario->getRol() === 'admin'){
+                            $_SESSION['admin'] = true;
+                        }
+
+                        header('Location:'.BASE_URL);
+                        exit();
+                    }else{
+                        $_SESSION['login'] = 'failed';
+                    }
                 }else{
-                    $_SESSION['error_login'] = 'Identificación fallida';
+                    $_SESSION['login'] = 'failed';
                 }
             }else{
                 header('Location:'.BASE_URL);
                 exit();
             }
+            header('Location:'.BASE_URL."usuario/loginCookies");
+            exit();
         }
 
         public function logout(){
-            if(isset($_SESSION['identity'])){
-                unset($_SESSION['identity']);
+            Utils::isIdentity();
+
+            Utils::deleteSession('identity');
+            Utils::deleteSession('admin');
+
+            if(isset($_COOKIE['recuerdame'])){
+                setcookie('recuerdame', '', time() - 1);
             }
 
-            if(isset($_SESSION['admin'])){
-                unset($_SESSION['admin']);
-            }
+            header('Location:'.BASE_URL);
         }
     }
 ?>

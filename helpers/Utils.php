@@ -7,7 +7,6 @@
                 $_SESSION[$name] = null;
                 unset($_SESSION[$name]);
             }
-            return $name;
         }
 
         public static function cifrarPassword($password){
@@ -18,8 +17,6 @@
         public static function isIdentity(){
             if(!isset($_SESSION['identity'])){
                 header('Location:'.BASE_URL);
-            }else{
-                return true;
             }
         }
 
@@ -27,8 +24,6 @@
         public static function isAdmin(){
             if(!isset($_SESSION['identity']) || $_SESSION['identity']['rol'] !== 'admin'){
                 header('Location:'.BASE_URL);
-            }else{
-                return true;
             }
         }
 

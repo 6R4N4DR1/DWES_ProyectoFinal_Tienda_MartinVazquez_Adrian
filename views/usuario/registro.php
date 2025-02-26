@@ -15,7 +15,7 @@
     <input type="text" name="nombre" required value="<?= isset($_SESSION['form_data']['nombre']) ? $_SESSION['form_data']['nombre'] : '' ?>">
 
     <?php if(isset($_SESSION['register']) && $_SESSION['register'] == 'failed_nombre'): ?>
-        <strong class="error">El nombre no es v&aacute;lido. Solo letras y espacios. Prueba de nuevo.</strong>
+        <strong class="error">El nombre no es v&aacute;lido. Prueba de nuevo.</strong>
         <?php Utils::deleteSession('register'); ?>
     <?php endif; ?>
 
@@ -23,7 +23,7 @@
     <input type="text" name="apellidos" required value="<?= isset($_SESSION['form_data']['apellidos']) ? $_SESSION['form_data']['apellidos'] : '' ?>">
 
     <?php if(isset($_SESSION['register']) && $_SESSION['register'] == 'failed_apellidos'): ?>
-        <strong class="error">Los apellidos no son v&aacute;lidos. Solo letras y espacios. Prueba de nuevo.</strong>
+        <strong class="error">Los apellidos no son v&aacute;lidos. Prueba de nuevo.</strong>
         <?php Utils::deleteSession('register'); ?>
     <?php endif; ?>
     

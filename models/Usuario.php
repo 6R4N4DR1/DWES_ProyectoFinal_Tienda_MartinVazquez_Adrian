@@ -80,22 +80,47 @@
         }
 
         public function login(){
-            $resultado = false;
-            $email = $this->email;
-            $password = $this->password;
-
-            $consultaSQL = "SELECT id, password FROM usuarios WHERE email = '$email'";
-            $this->baseDatos->ejecutarConsulta($consultaSQL, [':email' => $email]);
+            $this->baseDatos->ejecutarConsulta("SELECT * FROM usuarios WHERE email = :email", [
+                ':email' => $this->email
+            ]);
 
             if($this->baseDatos->getNumeroRegistros() == 1){
                 $usuario = $this->baseDatos->getNextRegistro();
-
-                $verify = password_verify($password, $usuario['password']);
+                
+                $verify = password_verify($this->password, $usuario['password']);
                 if($verify){
-                    $resultado = $usuario;
+                    $this->setId($usuario['id']);
+                    $this->setNombre($usuario['nombre']);
+                    $this->setApellidos($usuario['apellidos']);
+                    $this->setEmail($usuario['email']);
+                    $this->setRol($usuario['rol']);
+                    return $this;
                 }
             }
-            return $resultado;
+            return null;
+        }
+
+        public static function getUserPorEmail(string $email) {
+            $baseDatos = new BaseDatos();
+            $consultaSQL = "SELECT * FROM usuarios WHERE email = :email";
+            $baseDatos->ejecutarConsulta($consultaSQL, [
+                ':email' => $email
+            ]);
+
+            if($baseDatos->getNumeroRegistros() == 1){
+
+                $registro = $baseDatos->getNextRegistro();
+
+                $usuario = new Usuario();
+
+                $usuario->setId($registro['id']);
+                $usuario->setNombre($registro['nombre']);
+                $usuario->setApellidos($registro['apellidos']);
+                $usuario->setEmail($registro['email']);
+                $usuario->setRol($registro['rol']);
+                return $usuario;
+            }
+            return null;
         }
 
         
