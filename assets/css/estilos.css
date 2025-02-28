@@ -465,3 +465,73 @@ footer {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+/* Estilos para la tabla de usuarios */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #8B0000;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table td a.button-modificar {
+    display: inline-block;
+    background-color: #FFD700;
+    color: #8B0000;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+table td a.button-modificar:hover {
+    background-color: #8B0000;
+    color: #FFFFFF;
+}
+
+/* Estilos para la paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.paginacion a {
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+.paginacion input.boton {
+    background-color: #8B0000;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.paginacion input.boton:hover {
+    background-color: #FFD700;
+    color: #8B0000;
+}

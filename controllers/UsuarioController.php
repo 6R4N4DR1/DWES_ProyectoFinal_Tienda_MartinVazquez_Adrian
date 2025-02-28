@@ -230,5 +230,31 @@
             Utils::isAdmin();
             require_once 'views/usuario/crear.php';
         }
+
+        /**
+         * Método listaUsuarios
+         * Carga la vista de la lista de usuarios.
+         */
+        public function listaUsuarios(){
+            Utils::isAdmin();
+
+            $usuariosPorPagina = USERS_PER_PAGE;
+            $_SESSION['pagina'] = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+
+            $usuarios = Usuario::getAllUsers();
+
+            $totalPaginas = max(1, ceil(count($usuarios) / $usuariosPorPagina));
+            $usuarios = array_slice($usuarios, ($_SESSION['pagina'] - 1) * $usuariosPorPagina, $usuariosPorPagina);
+
+            if($_SESSION['pagina'] < 1) {
+                header('Location:'.BASE_URL.'usuario/listaUsuarios&pagina=1');
+            }
+
+            if($_SESSION['pagina'] > $totalPaginas) {
+                header('Location:'.BASE_URL.'usuario/listaUsuarios&pagina='.$totalPaginas);
+            }
+
+            require_once 'views/usuario/lista.php';
+        }
     }
 ?>

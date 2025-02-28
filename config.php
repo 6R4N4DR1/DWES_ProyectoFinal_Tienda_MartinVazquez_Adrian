@@ -12,6 +12,8 @@
     // URL base del proyecto
     define('BASE_URL', 'http://localhost/dashboard/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/');
 
+    // Paginación de usuarios y productos
+    define('USERS_PER_PAGE', 5); // Número de usuarios por página
     /**
      * Nota:
      * No se ha utilizado Composer para la configuración de la base de datos desde el archivo .env

@@ -191,7 +191,7 @@
 
             $existe = $this->bd->getNumRegistros() > 0;
             $this->bd->closeBD();
-            
+
             return $existe;
         }
 
@@ -222,6 +222,32 @@
             $bdClon->closeBD();
 
             return null;
+        }
+
+        /**
+         * Obtiene todos los usuarios de la base de datos ordenados por ID.
+         * 
+         * @return array Lista de usuarios.
+         */
+        public static function getAllUsers(){
+            $bdClon = new BaseDatos();
+            $sql = "SELECT * FROM usuarios";
+            $bdClon->ejecutarConsulta($sql);
+            $registros = $bdClon->getRegistros();
+            $usuarios = [];
+
+            foreach($registros as $registro){
+                $usuario = new Usuario();
+                $usuario->setId($registro['id']);
+                $usuario->setNombre($registro['nombre']);
+                $usuario->setApellidos($registro['apellidos']);
+                $usuario->setEmail($registro['email']);
+                $usuario->setRol($registro['rol']);
+                $usuarios[] = $usuario;
+            }
+            $bdClon->closeBD();
+
+            return $usuarios;
         }
     }
 ?>
