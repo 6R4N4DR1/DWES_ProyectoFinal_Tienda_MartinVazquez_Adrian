@@ -6,7 +6,7 @@
 
 <?php if(isset($_SESSION['login']) && $_SESSION['login'] == 'failed'): ?>
     <!-- Mensaje de error si el inicio de sesión ha fallado -->
-    <strong class="inicioFallido">Inicio de sesi&oacute;n fallido. Prueba de nuevo.</strong>
+    <strong class="fallido">Inicio de sesi&oacute;n fallido. Prueba de nuevo.</strong>
 <?php endif; ?>
 
 <!-- Formulario de inicio de sesión -->

@@ -442,13 +442,6 @@ form input[type="submit"]:hover {
     margin-bottom: 10px;
 }
 
-/* Estilos para los mensajes de error */
-.inicioFallido {
-    color: #dc3545;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
 /* Estilos para el footer */
 footer {
     background-color: #8B0000;
