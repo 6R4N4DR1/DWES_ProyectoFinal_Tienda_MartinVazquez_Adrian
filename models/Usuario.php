@@ -13,8 +13,8 @@
         private string $nombre;
         private string $apellidos;
         private string $email;
-        private string $password;
-        private string $rol;
+        private ?string $password;
+        private ?string $rol;
         private BaseDatos $bd;
 
 
@@ -25,7 +25,7 @@
          * 
          * @return int ID del usuario.
          */
-        public function getId(): int{
+        public function getId(){
             return $this->id;
         }
 
@@ -34,7 +34,7 @@
          * 
          * @param int $id ID del usuario.
          */
-        public function setId(int $id): void{
+        public function setId(int $id){
             $this->id = $id;
         }
 
@@ -43,7 +43,7 @@
          * 
          * @return string Nombre del usuario.
          */
-        public function getNombre(): string{
+        public function getNombre(){
             return $this->nombre;
         }
 
@@ -52,7 +52,7 @@
          * 
          * @param string $nombre Nombre del usuario.
          */
-        public function setNombre(string $nombre): void{
+        public function setNombre(string $nombre){
             $this->nombre = $nombre;
         }
 
@@ -61,7 +61,7 @@
          * 
          * @return string Apellidos del usuario.
          */
-        public function getApellidos(): string{
+        public function getApellidos(){
             return $this->apellidos;
         }
 
@@ -70,7 +70,7 @@
          * 
          * @param string $apellidos Apellidos del usuario.
          */
-        public function setApellidos(string $apellidos): void{
+        public function setApellidos(string $apellidos){
             $this->apellidos = $apellidos;
         }
 
@@ -79,7 +79,7 @@
          * 
          * @return string Email del usuario.
          */
-        public function getEmail(): string{
+        public function getEmail(){
             return $this->email;
         }
 
@@ -88,7 +88,7 @@
          * 
          * @param string $email Email del usuario.
          */
-        public function setEmail(string $email): void{
+        public function setEmail(string $email){
             $this->email = $email;
         }
 
@@ -97,7 +97,7 @@
          * 
          * @return string Contraseña del usuario.
          */
-        public function getPassword(): string{
+        public function getPassword(){
             return $this->password;
         }
 
@@ -106,7 +106,7 @@
          * 
          * @param string $password Contraseña del usuario.
          */
-        public function setPassword(string $password): void{
+        public function setPassword(?string $password){
             $this->password = $password;
         }
 
@@ -115,7 +115,7 @@
          * 
          * @return string Rol del usuario.
          */
-        public function getRol(): string{
+        public function getRol(){
             return $this->rol;
         }
 
@@ -124,7 +124,7 @@
          * 
          * @param string $rol Rol del usuario.
          */
-        public function setRol(string $rol): void{
+        public function setRol(?string $rol){
             $this->rol = $rol;
         }
 
@@ -177,6 +177,49 @@
             $this->bd->closeBD();
 
             return null;
+        }
+
+        /**
+         * Actualiza los datos de un usuario en la base de datos.
+         * 
+         * @return bool True si los datos se actualizaron correctamente, false en caso contrario.
+         */
+        public function actualizarBD(){
+            $this->bd = new BaseDatos();
+
+            if(!$this->password || strlen($this->password) == 0){
+                $this->password = null;
+            }
+
+            if(!isset($this->rol)){
+                $this->rol = 'user';
+            }
+
+            if($this->password !== null){
+                $sql = "UPDATE usuarios SET nombre = :nombre, apellidos = :apellidos, email = :email, password = :password, rol = :rol WHERE id = :id";
+                $this->bd->ejecutarConsulta($sql, [
+                    ':nombre' => $this->nombre,
+                    ':apellidos' => $this->apellidos,
+                    ':email' => $this->email,
+                    ':password' => Utils::cifrarPassword($this->password),
+                    ':rol' => $this->rol,
+                    ':id' => $this->id
+                ]);
+            }else{
+                $sql = "UPDATE usuarios SET nombre = :nombre, apellidos = :apellidos, email = :email, rol = :rol WHERE id = :id";
+                $this->bd->ejecutarConsulta($sql, [
+                    ':nombre' => $this->nombre,
+                    ':apellidos' => $this->apellidos,
+                    ':email' => $this->email,
+                    ':rol' => $this->rol,
+                    ':id' => $this->id
+                ]);
+            }
+
+            $salidaBD = $this->bd->getNumRegistros() == 1;
+            $this->bd->closeBD();
+            
+            return $salidaBD;
         }
 
         /**
@@ -248,6 +291,35 @@
             $bdClon->closeBD();
 
             return $usuarios;
+        }
+
+        /**
+         * Obtiene un usuario por su ID.
+         * 
+         * @param int $id ID del usuario.
+         * @return ?Usuario El usuario si se encontró, null en caso contrario.
+         */
+        public static function getUserPorId(int $id){
+            $bdClon = new BaseDatos();
+            $sql = "SELECT * FROM usuarios WHERE id = :id";
+            $bdClon->ejecutarConsulta($sql, [':id' => $id]);
+
+            if($bdClon->getNumRegistros() == 1){
+                $registro = $bdClon->getNextRegistro();
+
+                $usuario = new Usuario();
+                $usuario->setId($registro['id']);
+                $usuario->setNombre($registro['nombre']);
+                $usuario->setApellidos($registro['apellidos']);
+                $usuario->setEmail($registro['email']);
+                $usuario->setRol($registro['rol']);
+                $bdClon->closeBD();
+
+                return $usuario;
+            }
+            $bdClon->closeBD();
+
+            return null;
         }
     }
 ?>

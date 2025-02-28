@@ -48,7 +48,7 @@
 
 /* Estilos para el botón "Volver al inicio" */
 .boton-volver {
-    margin-top: 20px; /* Añade un margen superior para separar del botón de enviar */
+    margin: 0 20px; /* Añade un margen superior para separar del botón de enviar */
 }
 
 /* Estilos para los enlaces de cerrar sesión y nombre del usuario */
@@ -432,6 +432,7 @@ form input[type="submit"] {
     color: #FFFFFF;
     border: none;
     padding: 10px;
+    margin-bottom: 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -533,6 +534,7 @@ table td a.button-modificar:hover {
 .paginacion {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 20px;
 }
 
@@ -546,6 +548,7 @@ table td a.button-modificar:hover {
     color: #FFFFFF;
     padding: 10px 20px;
     border: none;
+    margin-top: 10px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;

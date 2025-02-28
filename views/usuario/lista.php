@@ -14,19 +14,19 @@
         </thead>
         <tbody>    
             <?php foreach($usuarios as $usuario): ?>
-                <tr id="user#<?=$usuario->getId();?>">
+                <tr id="<?=$usuario->getId();?>">
                     <td><?=$usuario->getId();?></td>
                     <td><?=$usuario->getNombre();?></td>
                     <td><?=$usuario->getApellidos();?></td>
                     <td><?=$usuario->getEmail();?></td>
                     <td><?=($usuario->getRol() === 'admin') ? 'Administrador' : 'Usuario'?></td>
-                    <td><a href="<?=BASE_URL?>usuario/editarUsuario&id=<?=$usuario->getId()?>" class="button button-modificar">Editar</a></td>
+                    <td><a href="<?=BASE_URL?>usuario/edit&id=<?=$usuario->getId()?>" class="button button-modificar">Editar</a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 <?php else: ?>
-    <strong>No hay usuarios registrados</strong>
+    <strong class="error">No hay usuarios registrados</strong>
 <?php endif; ?>
 
 <div class="paginacion">
@@ -36,10 +36,13 @@
                 <input type="button" class="boton" value="Anterior">
             </a>
         <?php endif; ?>
+        <a href="<?=BASE_URL?>" class="boton boton-volver">Ir al inicio</a>
         <?php if($_SESSION['pagina'] < $totalPaginas): ?>
             <a href="<?=BASE_URL?>usuario/listaUsuarios&pagina=<?=($_SESSION['pagina'] + 1)?>">
                 <input type="button" class="boton" value="Siguiente">
             </a>
         <?php endif; ?>
+    <?php else: ?>
+        <strong class="error">No hay usuarios registrados</strong>
     <?php endif; ?>
 </div>

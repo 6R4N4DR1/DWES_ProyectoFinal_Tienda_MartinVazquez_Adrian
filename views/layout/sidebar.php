@@ -1,3 +1,4 @@
+<?php // Asegúrate de que este archivo se guarde sin BOM y sin espacios antes de la etiqueta de apertura ?>
 <div id="contenido">
     <!-- Barra lateral -->
     <aside id="sidebar">   
@@ -6,7 +7,7 @@
                 // Obtiene el controlador y la acción actual de la URL
                 $controlador_actual = $_GET['controller'] ?? null;
                 $accion_actual = $_GET['action'] ?? null;
-            ?> 
+            ?>
             <?php if(!isset($_SESSION['identity'])): ?>
                 <!-- Enlaces para registrarse e iniciar sesión si el usuario no está identificado -->
                 <a href="<?=BASE_URL?>usuario/register" class="boton">Registrarse</a>
@@ -19,7 +20,7 @@
 
                 <!-- Información de la cuenta del usuario -->
                 <h3><?= $_SESSION['identity']['nombre'] ?> <?= $_SESSION['identity']['apellidos'] ?></h3>
-                <a href="#" class="enlaceRojo">Editar tu cuenta</a>
+                <a href="<?=BASE_URL?>usuario/edit" class="enlaceRojo">Editar tu cuenta</a>
                 <a href="<?=BASE_URL?>usuario/logout" class="enlaceRojo">Cerrar sesi&oacute;n</a>
 
                 <?php if($rol_actual === 'admin'): ?>
