@@ -108,9 +108,7 @@
          * Carga la vista de login y gestiona el inicio de sesión con cookies.
          */
         public function loginCookies(){
-            if(isset($_SESSION['identity'])){
-                header('Location:'.BASE_URL);
-            }
+            Utils::isIdentity();
 
             if(isset($_COOKIE['recuerdame'])){
                 $email = $_COOKIE['recuerdame'];
@@ -207,7 +205,7 @@
          * Cierra la sesión del usuario.
          */
         public function logout(){
-            Utils::isIdentity();
+            Utils::isNotIdentity();
             Utils::deleteSession('identity');
             Utils::deleteSession('admin');
 

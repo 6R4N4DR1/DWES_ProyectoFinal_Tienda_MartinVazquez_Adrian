@@ -18,17 +18,22 @@
                 ?>
 
                 <!-- Información de la cuenta del usuario -->
-                <h3>Cuenta</h3>
-                <a href="#" class="enlaceRojo"><?= $_SESSION['identity']['nombre'] ?> <?= $_SESSION['identity']['apellidos'] ?></a>
+                <h3><?= $_SESSION['identity']['nombre'] ?> <?= $_SESSION['identity']['apellidos'] ?></h3>
+                <a href="#" class="enlaceRojo">Editar tu cuenta</a>
                 <a href="<?=BASE_URL?>usuario/logout" class="enlaceRojo">Cerrar sesi&oacute;n</a>
+
+                <?php if($rol_actual === 'admin'): ?>
+                    <strong class="admin">Opciones de administrador</strong>
+                    <a href="#" class="enlaceRojo">Crear un nuevo usuario</a>
+                    <a href="#" class="enlace-rojo">Lista de usuarios</a>
+                <?php endif; ?>
 
                 <!-- Separador horizontal -->
                 <div class="separator"></div>
 
                 <?php if($rol_actual === 'admin'): ?>
                     <!-- Enlaces de gestión para el administrador -->
-                    <h3>Gestiones de administrador</h3>
-                    <a href="#" class="boton">Gestionar usuarios</a>
+                    <h3>Gestiones de administrativas</h3>
                     <a href="#" class="boton">Gestionar pedidos</a>
                     <a href="#" class="boton">Gestionar productos</a>
                     <a href="<?=BASE_URL?>categoria/index" class="boton">Gestionar categor&iacute;as</a>

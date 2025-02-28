@@ -155,9 +155,9 @@
          * @return ?Usuario El usuario si el inicio de sesión fue exitoso, null en caso contrario.
          */
         public function login(){
-            $this->bd->ejecutarConsulta("SELECT * FROM usuarios WHERE email = :email", [
-                ':email' => $this->email
-            ]);
+            $this->bd = new BaseDatos();
+            $sql = "SELECT * FROM usuarios WHERE email = :email";
+            $this->bd->ejecutarConsulta($sql, [':email' => $this->email]);
 
             if($this->bd->getNumRegistros() == 1){
                 $usuario = $this->bd->getNextRegistro();
@@ -169,9 +169,13 @@
                     $this->setApellidos($usuario['apellidos']);
                     $this->setEmail($usuario['email']);
                     $this->setRol($usuario['rol']);
+                    $this->bd->closeBD();
+
                     return $this;
                 }
             }
+            $this->bd->closeBD();
+
             return null;
         }
 
@@ -181,15 +185,13 @@
          * @param string $email Email del usuario.
          * @return ?Usuario El usuario si se encontró, null en caso contrario.
          */
-        public static function getUserPorEmail(string $email): ?Usuario {
-            $baseDatos = new BaseDatos();
-            $consultaSQL = "SELECT * FROM usuarios WHERE email = :email";
-            $baseDatos->ejecutarConsulta($consultaSQL, [
-                ':email' => $email
-            ]);
+        public static function getUserPorEmail(string $email){
+            $bdClon = new BaseDatos();
+            $sql = "SELECT * FROM usuarios WHERE email = :email";
+            $bdClon->ejecutarConsulta($sql, [':email' => $email]);
 
-            if($baseDatos->getNumeroRegistros() == 1){
-                $registro = $baseDatos->getNextRegistro();
+            if($bdClon->getNumRegistros() == 1){
+                $registro = $bdClon->getNextRegistro();
 
                 $usuario = new Usuario();
                 $usuario->setId($registro['id']);
@@ -197,8 +199,12 @@
                 $usuario->setApellidos($registro['apellidos']);
                 $usuario->setEmail($registro['email']);
                 $usuario->setRol($registro['rol']);
+                $bdClon->closeBD();
+
                 return $usuario;
             }
+            $bdClon->closeBD();
+            
             return null;
         }
     }

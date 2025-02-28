@@ -436,3 +436,17 @@ footer {
     bottom: 0;
     left: 0;
 }
+
+/* Estilos para el texto de administrador */
+.admin {
+    display: block;
+    margin-top: 10px;
+    color: #FFD700;
+    font-weight: bold;
+    text-align: center;
+    background-color: #8B0000;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
