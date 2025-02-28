@@ -2,17 +2,18 @@
     use helpers\Utils;
 ?>
 
-<h1>Registrar Usuario</h1>
+<!-- Título de la página -->
+<h1>Registrar Usuario/a</h1>
 
 <?php if(isset($_SESSION['register']) && $_SESSION['register'] == 'complete'): ?>
     <!-- Mensaje de éxito si el registro se completó -->
-    <strong class="completado">Registro completado. ¡Bienvenido!</strong>
+    <strong class="completado">Registro completado. ¡Bienvenido/a!</strong>
 <?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed'): ?>
     <!-- Mensaje de error si el registro falló -->
     <strong class="fallido">Registro fallido. Prueba otra vez.</strong>
 <?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed_email_duplicado'): ?>
     <!-- Mensaje de error si el email ya existe -->
-    <strong class="fallido">El correo ya está registrado. Prueba con otro.</strong>
+    <strong class="fallido">El correo ya est&aacute; registrado. Prueba con otro.</strong>
 <?php endif; ?>
 
 <!-- Formulario de registro de usuario -->

@@ -17,7 +17,6 @@
         private ?string $rol;
         private BaseDatos $bd;
 
-
         // Getters y Setters
 
         /**
@@ -133,7 +132,8 @@
          * 
          * @return bool True si el usuario se guardó correctamente, false en caso contrario.
          */
-        public function guardar(): bool{
+        public function guardar(){
+            // Instancia la conexión a la base de datos
             $this->bd = new BaseDatos();
             $sql = "INSERT INTO usuarios VALUES(null, :nombre, :apellidos, :email, :password, :rol)";
             $this->bd->ejecutarConsulta($sql, [
@@ -155,6 +155,7 @@
          * @return ?Usuario El usuario si el inicio de sesión fue exitoso, null en caso contrario.
          */
         public function login(){
+            // Instancia la conexión a la base de datos
             $this->bd = new BaseDatos();
             $sql = "SELECT * FROM usuarios WHERE email = :email";
             $this->bd->ejecutarConsulta($sql, [':email' => $this->email]);
@@ -185,6 +186,7 @@
          * @return bool True si los datos se actualizaron correctamente, false en caso contrario.
          */
         public function actualizarBD(){
+            // Instancia la conexión a la base de datos
             $this->bd = new BaseDatos();
 
             if(!$this->password || strlen($this->password) == 0){
@@ -228,6 +230,7 @@
          * @return bool True si el email existe, false en caso contrario.
          */
         public function existeEmail(){
+            // Instancia la conexión a la base de datos
             $this->bd = new BaseDatos();
             $sql = "SELECT id FROM usuarios WHERE email = :email";
             $this->bd->ejecutarConsulta($sql, [':email' => $this->email]);
@@ -245,6 +248,7 @@
          * @return ?Usuario El usuario si se encontró, null en caso contrario.
          */
         public static function getUserPorEmail(string $email){
+            // Instancia la conexión a la base de datos
             $bdClon = new BaseDatos();
             $sql = "SELECT * FROM usuarios WHERE email = :email";
             $bdClon->ejecutarConsulta($sql, [':email' => $email]);
@@ -273,6 +277,7 @@
          * @return array Lista de usuarios.
          */
         public static function getAllUsers(){
+            // Instancia la conexión a la base de datos
             $bdClon = new BaseDatos();
             $sql = "SELECT * FROM usuarios";
             $bdClon->ejecutarConsulta($sql);
@@ -300,6 +305,7 @@
          * @return ?Usuario El usuario si se encontró, null en caso contrario.
          */
         public static function getUserPorId(int $id){
+            // Instancia la conexión a la base de datos
             $bdClon = new BaseDatos();
             $sql = "SELECT * FROM usuarios WHERE id = :id";
             $bdClon->ejecutarConsulta($sql, [':id' => $id]);

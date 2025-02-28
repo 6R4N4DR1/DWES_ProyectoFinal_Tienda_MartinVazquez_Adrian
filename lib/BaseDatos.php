@@ -47,6 +47,7 @@
          */
         public function ejecutarConsulta(string $sql, array $parametros = []): void{
             try{
+                // Prepara y ejecuta la consulta SQL
                 $this->consulta = $this->conexion->prepare($sql);
                 $this->consulta->execute($parametros);
             }catch(PDOException $PDOe){
@@ -97,7 +98,7 @@
             return $this->conexion->lastInsertId();
         }
 
-        // Métodos cerrar la conexión con la base de datos
+        // Métodos para cerrar la conexión con la base de datos
 
         /**
          * Método closeBD

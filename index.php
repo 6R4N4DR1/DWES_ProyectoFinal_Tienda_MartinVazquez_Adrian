@@ -14,10 +14,13 @@
     require_once 'config.php';
     require_once 'helpers/Utils.php';
 
+    // Verifica si el usuario ha iniciado sesión y si su ID está presente en la sesión
     if (isset($_SESSION['identity']) && isset($_SESSION['identity']['id'])) {
+        // Obtiene los datos del usuario por su ID
         $usuario = Usuario::getUserPorId($_SESSION['identity']['id']);
 
         if ($usuario) {
+            // Actualiza la información del usuario en la sesión
             $_SESSION['identity'] = [
                 'id' => $usuario->getId(),
                 'nombre' => $usuario->getNombre(),
@@ -27,6 +30,7 @@
             ];
         }
 
+        // Si el usuario es administrador, establece una sesión de administrador
         if($usuario->getRol() == 'admin'){
             $_SESSION['admin'] = true;
         }

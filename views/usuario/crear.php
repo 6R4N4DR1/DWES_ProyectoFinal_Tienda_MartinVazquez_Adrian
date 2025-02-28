@@ -59,8 +59,8 @@
     <!-- Campo para el rol -->
     <label for="rol">Rol</label>
     <select name="rol">
-        <option value="user" <?= isset($_SESSION['form_data']['rol']) && $_SESSION['form_data']['rol'] == 'user' ? 'selected' : '' ?>>Usuario</option>
-        <option value="admin" <?= isset($_SESSION['form_data']['rol']) && $_SESSION['form_data']['rol'] == 'admin' ? 'selected' : '' ?>>Administrador</option>
+        <option value="user" <?= isset($_SESSION['form_data']['rol']) && $_SESSION['form_data']['rol'] == 'user' ? 'selected' : '' ?>>Usuario/a</option>
+        <option value="admin" <?= isset($_SESSION['form_data']['rol']) && $_SESSION['form_data']['rol'] == 'admin' ? 'selected' : '' ?>>Administrador/a</option>
     </select>
 
     <!-- Botón para enviar el formulario -->

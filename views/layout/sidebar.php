@@ -1,4 +1,3 @@
-<?php // Asegúrate de que este archivo se guarde sin BOM y sin espacios antes de la etiqueta de apertura ?>
 <div id="contenido">
     <!-- Barra lateral -->
     <aside id="sidebar">   
@@ -10,7 +9,7 @@
             ?>
             <?php if(!isset($_SESSION['identity'])): ?>
                 <!-- Enlaces para registrarse e iniciar sesión si el usuario no está identificado -->
-                <a href="<?=BASE_URL?>usuario/register" class="boton">Registrarse</a>
+                <a href="<?=BASE_URL?>usuario/register" class="boton">Registrar un nuevo usuario/a</a>
                 <a href="<?=BASE_URL?>usuario/loginCookies" class="boton">Iniciar sesi&oacute;n</a>
             <?php else: ?>
                 <?php
@@ -24,8 +23,9 @@
                 <a href="<?=BASE_URL?>usuario/logout" class="enlaceRojo">Cerrar sesi&oacute;n</a>
 
                 <?php if($rol_actual === 'admin'): ?>
+                    <!-- Opciones de administrador -->
                     <strong class="admin">Opciones de administrador</strong>
-                    <a href="<?=BASE_URL?>usuario/crearUsuario" class="enlaceRojo">Crear un nuevo usuario</a>
+                    <a href="<?=BASE_URL?>usuario/crearUsuario" class="enlaceRojo">Crear un nuevo usuario/a</a>
                     <a href="<?=BASE_URL?>usuario/listaUsuarios" class="enlace-rojo">Lista de usuarios</a>
                 <?php endif; ?>
 

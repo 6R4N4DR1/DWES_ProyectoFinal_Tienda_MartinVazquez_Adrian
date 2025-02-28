@@ -2,6 +2,7 @@
     use helpers\Utils; 
 ?>
 
+<!-- Título de la página -->
 <h1>Inicio de Sesi&oacute;n</h1>
 
 <?php if(isset($_SESSION['login']) && $_SESSION['login'] == 'failed'): ?>
