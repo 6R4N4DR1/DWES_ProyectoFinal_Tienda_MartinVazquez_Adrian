@@ -46,6 +46,16 @@
     color: #FFFFFF;
 }
 
+/* Estilos para el botón "Volver al inicio" */
+.boton-volver {
+    margin-top: 20px; /* Añade un margen superior para separar del botón de enviar */
+}
+
+/* Estilos para el botón "Ver lista de usuarios" */
+.boton-listaUsers {
+    margin-top: 20px; /* Añade un margen superior para separar del botón de enviar */
+}
+
 /* Estilos para los enlaces de cerrar sesión y nombre del usuario */
 .enlace-rojo {
     display: block;
@@ -385,6 +395,23 @@ form .contenedorRecordar {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+}
+
+form label[for="rol"] {
+    display: block;
+}
+
+form select[name="rol"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease;
+}
+
+select[name="rol"]:focus {
+    border-color: #8B0000;
 }
 
 form input[type="submit"] {

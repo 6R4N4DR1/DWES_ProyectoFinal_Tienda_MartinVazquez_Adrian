@@ -17,7 +17,7 @@
                 <!-- Logo de la tienda -->
                 <img src="<?=BASE_URL?>assets/images/donmanolo.png" alt="Don Manolo retrato">
                 <!-- Enlace a la página principal -->
-                <a href="<?=BASE_URL?>index.php">
+                <a href="<?=BASE_URL?>">
                     <h1>Tienda - La charcuter&iacute;a de Don Manolo</h1>
                 </a>
             </div>

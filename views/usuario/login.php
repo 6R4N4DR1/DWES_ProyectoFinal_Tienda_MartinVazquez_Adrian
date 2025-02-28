@@ -32,3 +32,6 @@
 <!-- Elimina las sesiones de login y form_data -->
 <?php Utils::deleteSession('login'); ?>
 <?php Utils::deleteSession('form_data'); ?>
+
+<!-- Botón para volver al inicio -->
+<a href="<?=BASE_URL?>" class="boton boton-volver">Ir al inicio</a>

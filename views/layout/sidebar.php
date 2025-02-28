@@ -24,8 +24,8 @@
 
                 <?php if($rol_actual === 'admin'): ?>
                     <strong class="admin">Opciones de administrador</strong>
-                    <a href="#" class="enlaceRojo">Crear un nuevo usuario</a>
-                    <a href="#" class="enlace-rojo">Lista de usuarios</a>
+                    <a href="<?=BASE_URL?>usuario/crearUsuario" class="enlaceRojo">Crear un nuevo usuario</a>
+                    <a href="<?=BASE_URL?>usuario/listaUsuarios" class="enlace-rojo">Lista de usuarios</a>
                 <?php endif; ?>
 
                 <!-- Separador horizontal -->
