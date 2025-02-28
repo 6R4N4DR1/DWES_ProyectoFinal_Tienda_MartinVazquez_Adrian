@@ -143,13 +143,13 @@ La estructura del proyecto es la siguiente:
 * **config.php** : Archivo de configuración que define las constantes de configuración de la base de datos y otras configuraciones del proyecto.
 * **index.php** : Archivo principal que inicia la aplicación, maneja las rutas y carga los controladores y vistas correspondientes.
 
-### Directorio [assets](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+### Directorio [assets](./assets)
 
 * **css/estilos.css** : Archivo de estilos CSS para la aplicación.
 * **fonts/** : Directorio que contiene varios archivos de fuentes `.ttf`.
 * **images/** : Directorio que contiene varios archivos de imagen utilizados en la aplicación.
 
-### Directorio [controllers](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+### Directorio [controllers](./controllers)
 
 * **CarritoController.php** : Controlador para gestionar las acciones relacionadas con el carrito de compras.
 * **CategoriaController.php** : Controlador para gestionar las acciones relacionadas con las categorías.
@@ -157,26 +157,26 @@ La estructura del proyecto es la siguiente:
 * **PedidoController.php** : Controlador para gestionar las acciones relacionadas con los pedidos.
 * **ProductoController.php** : Controlador para gestionar las acciones relacionadas con los productos.
 
-### Directorio [database](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+### Directorio [database](./database)
 
 * **database.sql** : Archivo SQL que contiene el script para crear y poblar la base de datos.
 
-### Directorio [helpers](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+### Directorio [helpers](./helpers)
 
 * **Utils.php** : Clase de utilidades con métodos estáticos para diversas funciones comunes, como la gestión de sesiones y la validación de datos.
 
-### Directorio [lib](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+### Directorio [lib](./lib)
 
 * **BaseDatos.php** : Clase para gestionar la conexión y las operaciones con la base de datos utilizando PDO.
 
-### Directorio [models](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+### Directorio [models](./models)
 
 * **Categoria.php** : Modelo para gestionar las operaciones relacionadas con las categorías.
 * **Pedido.php** : Modelo para gestionar las operaciones relacionadas con los pedidos.
 * **Producto.php** : Modelo para gestionar las operaciones relacionadas con los productos.
 * **Usuario.php** : Modelo para gestionar las operaciones relacionadas con los usuarios.
 
-### Directorio [views](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+### Directorio [views](./views)
 
 * **carrito/** : Directorio que contiene las vistas relacionadas con el carrito de compras.
 * **categoria/index.php** : Vista principal para gestionar las categorías.
@@ -194,7 +194,7 @@ La estructura del proyecto es la siguiente:
 
 ## Enlaces
 
-* [Repositorio en GitHub](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
-* [Documentación Oficial de PHP](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
-* [Documentación de Composer](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
-* [Documentación de PDO](vscode-file://vscode-app/c:/Users/adria/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+* [Repositorio en GitHub](https://github.com/6R4N4DR1/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian)
+* [Documentación Oficial de PHP](https://www.php.net/manual/es/index.php)
+* [Documentación de Composer](https://getcomposer.org/doc/)
+* [Documentación de PDO](https://www.php.net/manual/es/book.pdo.php)
