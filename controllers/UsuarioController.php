@@ -16,6 +16,7 @@
          * Carga la vista de registro de usuario.
          */
         public function register(){
+            Utils::isIdentity();
             require_once 'views/usuario/registro.php';
         }
 
@@ -24,7 +25,7 @@
          * Guarda un nuevo usuario en la base de datos.
          */
         public function save(){
-            Utils::isIdentity();
+            Utils::isNotIdentity();
 
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 // Recoge los datos del formulario
@@ -82,9 +83,9 @@
                         $_SESSION['register'] = 'complete';
                         if(isset($_SESSION['admin'])){
                             Utils::deleteSession('register');
-                            header("Location:" . BASE_URL . "usuario/admin" . (isset($_SESSION['pag']) ? "&pag=" . $_SESSION['pag'] : ""));
+                            header('Location:' . BASE_URL . 'usuario/admin' . (isset($_SESSION['pag']) ? '&pag=' . $_SESSION['pag'] : ""));
                         }else{
-                            header("Location:" . BASE_URL . "usuario/register");
+                            header('Location:' . BASE_URL . 'usuario/register');
                         }
                     }else{
                         $_SESSION['register'] = 'failed';

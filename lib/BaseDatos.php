@@ -14,8 +14,8 @@
         private string $user;
         private string $password;
         private string $tienda;
-        private PDO $conexion;
-        private PDOStatement $consulta;
+        private ?PDO $conexion;
+        private ?PDOStatement $consulta;
 
         /**
          * Constructor de la clase
@@ -51,7 +51,7 @@
                 $this->consulta->execute($parametros);
             }catch(PDOException $PDOe){
                 // Muestra el mensaje de error por defecto en caso de fallo en la conexión
-                echo $PDOe->getMessage();
+                echo "Error en la conexión con la base de datos: ".$PDOe->getMessage();
             }
         }
 
@@ -83,7 +83,7 @@
          * 
          * @return int El número de registros de la consulta.
          */
-        public function getNumeroRegistros(): int{
+        public function getNumRegistros(): int{
             return $this->consulta->rowCount();
         }
 
@@ -93,34 +93,27 @@
          * 
          * @return string El último ID insertado.
          */
-        public function getUltimoId(): string{
+        public function getLastId(): string{
             return $this->conexion->lastInsertId();
         }
 
-        // Métodos para gestionar transacciones
+        // Métodos cerrar la conexión con la base de datos
 
         /**
-         * Método iniciarCambios
-         * Inicia una transacción.
+         * Método closeBD
+         * Cierra la conexión con la base de datos.
          */
-        public function iniciarCambios(): void{
-            $this->conexion->beginTransaction();
+        public function closeBD(): void{
+            $this->conexion = null;
+            $this->consulta = null;
         }
 
         /**
-         * Método guardarCambios
-         * Confirma una transacción.
+         * Destructor de la clase
+         * Cierra la conexión con la base de datos al destruir el objeto.
          */
-        public function guardarCambios(): void{
-            $this->conexion->commit();
-        }
-
-        /**
-         * Método descartarCambios
-         * Revierte una transacción.
-         */
-        public function descartarCambios(): void{
-            $this->conexion->rollBack();
+        public function __destruct(){
+            $this->closeBD();
         }
     }
 ?>

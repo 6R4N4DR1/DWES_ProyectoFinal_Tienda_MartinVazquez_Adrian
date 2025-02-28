@@ -1,9 +1,9 @@
 <?php
     // Configuración de la base de datos
-    define('DB_HOST', 'localhost'); // Host de la base de datos
-    define('DB_USER', 'root'); // Usuario de la base de datos
-    define('DB_PASS', ''); // Contraseña de la base de datos
-    define('DB_NAME', 'tienda'); // Nombre de la base de datos
+    define('DB_HOST', 'localhost'); // Host de la base de datos (con composer sería $_ENV['DB_HOST'])
+    define('DB_USER', 'root'); // Usuario de la base de datos (con composer sería $_ENV['DB_USER'])
+    define('DB_PASS', ''); // Contraseña de la base de datos (con composer sería $_ENV['DB_PASS'])
+    define('DB_NAME', 'tienda'); // Nombre de la base de datos (con composer sería $_ENV['DB_NAME'])
 
     // Configuración del controlador y acción por defecto
     define('CONTROLLER_DEFAULT', 'Producto'); // Controlador por defecto - Página por defecto

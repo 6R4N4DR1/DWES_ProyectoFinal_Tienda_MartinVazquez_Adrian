@@ -15,15 +15,8 @@
         private string $email;
         private string $password;
         private string $rol;
-        private BaseDatos $baseDatos;
+        private BaseDatos $bd;
 
-        /**
-         * Constructor de la clase
-         * Inicializa la conexión con la base de datos.
-         */
-        public function __construct(){
-            $this->baseDatos = new BaseDatos();
-        }
 
         // Getters y Setters
 
@@ -141,8 +134,9 @@
          * @return bool True si el usuario se guardó correctamente, false en caso contrario.
          */
         public function guardar(): bool{
-            $consultaSQL = "INSERT INTO usuarios VALUES(null, :nombre, :apellidos, :email, :password, :rol)";
-            $this->baseDatos->ejecutarConsulta($consultaSQL, [
+            $this->bd = new BaseDatos();
+            $sql = "INSERT INTO usuarios VALUES(null, :nombre, :apellidos, :email, :password, :rol)";
+            $this->bd->ejecutarConsulta($sql, [
                 ':nombre' => $this->nombre,
                 ':apellidos' => $this->apellidos,
                 ':email' => $this->email,
@@ -150,7 +144,9 @@
                 ':rol' => $this->rol
             ]);
 
-            return $this->baseDatos->getNumeroRegistros() == 1;
+            $salidaBD = $this->bd->getNumRegistros() == 1;
+            $this->bd->closeBD();
+            return $salidaBD;
         }
 
         /**
@@ -158,13 +154,13 @@
          * 
          * @return ?Usuario El usuario si el inicio de sesión fue exitoso, null en caso contrario.
          */
-        public function login(): ?Usuario{
-            $this->baseDatos->ejecutarConsulta("SELECT * FROM usuarios WHERE email = :email", [
+        public function login(){
+            $this->bd->ejecutarConsulta("SELECT * FROM usuarios WHERE email = :email", [
                 ':email' => $this->email
             ]);
 
-            if($this->baseDatos->getNumeroRegistros() == 1){
-                $usuario = $this->baseDatos->getNextRegistro();
+            if($this->bd->getNumRegistros() == 1){
+                $usuario = $this->bd->getNextRegistro();
                 
                 $verify = password_verify($this->password, $usuario['password']);
                 if($verify){

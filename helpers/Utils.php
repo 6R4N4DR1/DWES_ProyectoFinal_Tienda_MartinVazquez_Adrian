@@ -32,12 +32,23 @@
         }
 
         /**
-         * Método isIdentity
+         * Método isNotIdentity
          * Comprueba si el usuario está registrado (identificado).
          * Si no está registrado, redirige a la página principal.
          */
-        public static function isIdentity(){
+        public static function isNotIdentity(){
             if(!isset($_SESSION['identity'])){
+                header('Location:'.BASE_URL);
+            }
+        }
+
+        /**
+         * Método isIdentity
+         * Comprueba si el usuario está registrado (identificado).
+         * Si está registrado, redirige a la página principal.
+         */
+        public static function isIdentity(){
+            if(isset($_SESSION['identity'])){
                 header('Location:'.BASE_URL);
             }
         }
