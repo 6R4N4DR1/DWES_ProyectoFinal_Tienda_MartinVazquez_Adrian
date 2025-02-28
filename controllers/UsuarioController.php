@@ -104,37 +104,6 @@
         }
 
         /**
-         * Método loginCookies
-         * Carga la vista de login y gestiona el inicio de sesión con cookies.
-         */
-        public function loginCookies(){
-            Utils::isIdentity();
-
-            if(isset($_COOKIE['recuerdame'])){
-                $email = $_COOKIE['recuerdame'];
-                $usuario = Usuario::getUserPorEmail($email);
-
-                if($usuario){
-                    $_SESSION['identity'] = [
-                        'id' => $usuario->getId(),
-                        'nombre' => $usuario->getNombre(),
-                        'apellidos' => $usuario->getApellidos(),
-                        'email' => $usuario->getEmail(),
-                        'rol' => $usuario->getRol()
-                    ];
-
-                    if($usuario->getRol() === 'admin'){
-                        $_SESSION['admin'] = true;
-                    }
-
-                    header('Location:'.BASE_URL);
-                    exit();
-                }
-            }
-            require_once 'views/usuario/login.php';
-        }
-
-        /**
          * Método login
          * Gestiona el inicio de sesión de un usuario.
          */
@@ -198,6 +167,37 @@
             }
             header('Location:'.BASE_URL."usuario/loginCookies");
             exit();
+        }
+
+        /**
+         * Método loginCookies
+         * Carga la vista de login y gestiona el inicio de sesión con cookies.
+         */
+        public function loginCookies(){
+            Utils::isIdentity();
+
+            if(isset($_COOKIE['recuerdame'])){
+                $email = $_COOKIE['recuerdame'];
+                $usuario = Usuario::getUserPorEmail($email);
+
+                if($usuario){
+                    $_SESSION['identity'] = [
+                        'id' => $usuario->getId(),
+                        'nombre' => $usuario->getNombre(),
+                        'apellidos' => $usuario->getApellidos(),
+                        'email' => $usuario->getEmail(),
+                        'rol' => $usuario->getRol()
+                    ];
+
+                    if($usuario->getRol() === 'admin'){
+                        $_SESSION['admin'] = true;
+                    }
+
+                    header('Location:'.BASE_URL);
+                    exit();
+                }
+            }
+            require_once 'views/usuario/login.php';
         }
 
         /**
