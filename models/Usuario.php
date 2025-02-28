@@ -180,6 +180,22 @@
         }
 
         /**
+         * Verifica si el email ya existe en la base de datos.
+         * 
+         * @return bool True si el email existe, false en caso contrario.
+         */
+        public function existeEmail(){
+            $this->bd = new BaseDatos();
+            $sql = "SELECT id FROM usuarios WHERE email = :email";
+            $this->bd->ejecutarConsulta($sql, [':email' => $this->email]);
+
+            $existe = $this->bd->getNumRegistros() > 0;
+            $this->bd->closeBD();
+            
+            return $existe;
+        }
+
+        /**
          * Obtiene un usuario por su email.
          * 
          * @param string $email Email del usuario.
@@ -204,7 +220,7 @@
                 return $usuario;
             }
             $bdClon->closeBD();
-            
+
             return null;
         }
     }

@@ -10,6 +10,9 @@
 <?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed'): ?>
     <!-- Mensaje de error si el registro falló -->
     <strong class="fallido">Registro fallido. Prueba otra vez.</strong>
+<?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed_email_duplicado'): ?>
+    <!-- Mensaje de error si el email ya existe -->
+    <strong class="fallido">El correo ya está registrado. Prueba con otro.</strong>
 <?php endif; ?>
 
 <!-- Formulario de registro de usuario -->

@@ -48,25 +48,25 @@
                 if($nombre && $apellidos && $email && $password){
                     if(!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/", $nombre)){
                         $_SESSION['register'] = 'failed_nombre';
-                        header('Location:'.BASE_URL.'usuario/register');
+                        header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
 
                     if(!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/", $apellidos)){
                         $_SESSION['register'] = 'failed_apellidos';
-                        header('Location:'.BASE_URL.'usuario/register');
+                        header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
 
                     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                         $_SESSION['register'] = 'failed_email';
-                        header('Location:'.BASE_URL.'usuario/register');
+                        header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
 
                     if(!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/', $password)){
                         $_SESSION['register'] = 'failed_password';
-                        header('Location:'.BASE_URL.'usuario/register');
+                        header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
 
@@ -75,6 +75,13 @@
                     $usuario->setNombre($nombre);
                     $usuario->setApellidos($apellidos);
                     $usuario->setEmail($email);
+
+                    if($usuario->existeEmail()){
+                        $_SESSION['register'] = 'failed_email_duplicado';
+                        header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
+                        exit();
+                    }
+
                     $usuario->setPassword(($password));
                     $usuario->setRol($rol);
 
@@ -82,8 +89,7 @@
                         Utils::deleteSession('form_data');
                         $_SESSION['register'] = 'complete';
                         if(isset($_SESSION['admin'])){
-                            Utils::deleteSession('register');
-                            header('Location:' . BASE_URL . 'usuario/admin' . (isset($_SESSION['pag']) ? '&pag=' . $_SESSION['pag'] : ""));
+                            header('Location:' . BASE_URL . 'usuario/crearUsuario');
                         }else{
                             header('Location:' . BASE_URL . 'usuario/register');
                         }
@@ -214,6 +220,15 @@
             }
 
             header('Location:'.BASE_URL);
+        }
+
+        /**
+         * Método crearUsuario
+         * Carga la vista de creación de usuario.
+         */
+        public function crearUsuario(){
+            Utils::isAdmin();
+            require_once 'views/usuario/crear.php';
         }
     }
 ?>
