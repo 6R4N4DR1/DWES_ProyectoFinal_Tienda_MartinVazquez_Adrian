@@ -65,10 +65,14 @@
     color: #FFD700;
 }
 
+html {
+    background-color: #8B0000;
+}
+
 /* Estilos generales */
 body {
     margin: 0;
-    background-color: #FFFFFF;
+    background-color: #8B0000;
     background: url(../images/jamonpartio.jpg);
     color: #000000;
     font-family: 'Roboto Condensed', sans-serif;
