@@ -51,11 +51,6 @@
     margin-top: 20px; /* Añade un margen superior para separar del botón de enviar */
 }
 
-/* Estilos para el botón "Ver lista de usuarios" */
-.boton-listaUsers {
-    margin-top: 20px; /* Añade un margen superior para separar del botón de enviar */
-}
-
 /* Estilos para los enlaces de cerrar sesión y nombre del usuario */
 .enlace-rojo {
     display: block;

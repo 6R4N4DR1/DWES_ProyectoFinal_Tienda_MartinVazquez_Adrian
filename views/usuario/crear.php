@@ -68,8 +68,5 @@
 <?php Utils::deleteSession('register'); ?>
 <?php Utils::deleteSession('form_data'); ?>
 
-<!-- Botón para ver la lista de usuarios -->
-<a href="<?=BASE_URL?>usuario/listaUsuarios" class="boton boton-listaUsers">Ver lista de usuarios</a>
-
 <!-- Botón para volver al inicio -->
 <a href="<?=BASE_URL?>" class="boton boton-volver">Ir al inicio</a>
