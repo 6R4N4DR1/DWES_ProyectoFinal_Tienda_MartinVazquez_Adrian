@@ -1,18 +1,22 @@
-
-# Proyecto Final de Desarrollo Web en Entorno Servidor
-
-## Índice
-
-1. Portada
-2. Índice
-3. Estructura del Proyecto
-4. Explicación de los Ficheros
-
-## Portada
+# Proyecto Final de Desarrollo Web en Entorno Servidor de una Tienda: La Charcutería de Don Manolo
 
 ![Logo de la Charcutería de Don Manolo](./assets/images/donmanolo.png)
 
 Este proyecto es una aplicación web de una tienda de charcutería llamada "Charcutería de Don Manolo". La charcutería de Don Manolo es una charcutería de postín conocida por su secreto íntimo familiar sobre jamones y su corte perfecto. La aplicación permite a los usuarios registrarse, iniciar sesión, ver productos destacados, gestionar categorías, productos y pedidos, y realizar compras. El proyecto está desarrollado en PHP y utiliza una arquitectura MVC (Modelo-Vista-Controlador).
+
+## Índice
+
+1. Estructura del Proyecto
+2. Explicación de los Ficheros
+   1. Raíz del Proyecto
+   2. Directorio assets
+   3. Directorio controllers
+   4. Directorio database
+   5. Directorio helpers
+   6. Directorio lib
+   7. Directorio models
+   8. Directorio views
+3. Enlaces/Bibliografía
 
 ## Estructura del Proyecto
 
@@ -192,9 +196,15 @@ La estructura del proyecto es la siguiente:
 * **usuario/editarCuenta.php** : Vista para editar la cuenta del usuario actual.
 * **usuario/crear.php** : Vista para crear un nuevo usuario.
 
-## Enlaces
+## Enlaces/Bibliografía
 
 * [Repositorio en GitHub](https://github.com/6R4N4DR1/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian)
 * [Documentación Oficial de PHP](https://www.php.net/manual/es/index.php)
 * [Documentación de Composer](https://getcomposer.org/doc/)
 * [Documentación de PDO](https://www.php.net/manual/es/book.pdo.php)
+* El Guión PDF del proyecto
+* [Lista de Conceptos PHP por Aloncraft](https://github.com/AloncraftMC/DWES_Hernandez_Robles_Alonso/blob/master/LISTA%20DE%20CONCEPTOS%20PHP.md)
+* [Copilot](https://github.com/copilot)
+* [ChatGPT](https://chatgpt.com/)
+* Guias varias de YouTube sobre el manejo de PHP con MySQL y xampp
+* Ayuda, apoyo y explicaciones de compañeros de clase
