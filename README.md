@@ -10,7 +10,7 @@
 
 ## Portada
 
-![Logo de la Charcutería de Don Manolo](vscode-file://vscode-app/c:/xampp/htdocs/dashboard/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/assets/images/donmanolo.png)
+![Logo de la Charcutería de Don Manolo](./assets/images/donmanolo.png)
 
 Este proyecto es una aplicación web de una tienda de charcutería llamada "Charcutería de Don Manolo". La charcutería de Don Manolo es una charcutería de postín conocida por su secreto íntimo familiar sobre jamones y su corte perfecto. La aplicación permite a los usuarios registrarse, iniciar sesión, ver productos destacados, gestionar categorías, productos y pedidos, y realizar compras. El proyecto está desarrollado en PHP y utiliza una arquitectura MVC (Modelo-Vista-Controlador).
 
