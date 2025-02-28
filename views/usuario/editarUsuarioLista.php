@@ -15,7 +15,7 @@
     <strong class="fallido">Fallo encontrado, no se puedo editar los datos de tu cuenta. Prueba de nuevo</strong>
 <?php endif; ?>
 
-<form action="<?=BASE_URL?>usuario/editarUsuario&id=<?$_GET['id']?>" method="POST">
+<form action="<?=BASE_URL?>usuario/editarUsuario&id=<?=$_GET['id']?>" method="POST">
     <!-- Campo para el nombre -->
     <label for="nombre">Nombre</label>
     <input type="text" name="nombre" value="<?= isset($_SESSION['form_data']['nombre']) ? $_SESSION['form_data']['nombre'] : $usuario->getNombre() ?>">
@@ -56,3 +56,5 @@
 
 <?php Utils::deleteSession('edicion'); ?>
 <?php Utils::deleteSession('form_data'); ?>
+
+<a href="<?=BASE_URL?>usuario/listaUsuarios" class="boton boton-volver">Volver a la lista</a>

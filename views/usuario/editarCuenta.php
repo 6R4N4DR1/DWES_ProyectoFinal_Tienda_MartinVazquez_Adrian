@@ -58,3 +58,5 @@
 
 <?php Utils::deleteSession('edicion'); ?>
 <?php Utils::deleteSession('form_data'); ?>
+
+<a href="<?=BASE_URL?>" class="boton boton-volver">Ir al inicio</a>

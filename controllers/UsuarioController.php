@@ -314,8 +314,16 @@
                     'rol' => $rol
                 ];
 
-                $id = isset($_GET['id']) ? $_GET['id'] : $_SESSION['identity']['id'];
+                $id = isset($_GET['id']) ? (int)$_GET['id'] : (int)$_SESSION['identity']['id'];
                 $usuarioActual = Usuario::getUserPorId($id);
+
+                if ($usuarioActual === null) {
+                    $_SESSION['edicion'] = 'failed_user_not_found';
+                    if(ob_get_length()) { ob_clean(); }
+                    header('Location:'.BASE_URL.'usuario/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
+                    exit();
+                }
+
                 if($nombre != $usuarioActual->getNombre() || $apellidos != $usuarioActual->getApellidos() || $email != $usuarioActual->getEmail() || strlen($password) > 0 || $rol != $usuarioActual->getRol()){
                     if($nombre && !preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/", $nombre)){
                         $_SESSION['edicion'] = 'failed_nombre';
@@ -358,10 +366,12 @@
                         Utils::deleteSession('form_data');
 
                         if($_SESSION['identity']['id'] == $id){
-                            $_SESSION['identity']['nombre'] = $nombre;
-                            $_SESSION['identity']['apellidos'] = $apellidos;
-                            $_SESSION['identity']['email'] = $email;
-                            $_SESSION['identity']['rol'] = $rol;
+                            $_SESSION['identity'] = [
+                                'nombre' => $usuario->getNombre(),
+                                'apellidos' => $usuario->getApellidos(),
+                                'email' => $usuario->getEmail(),
+                                'rol' => $usuario->getRol()
+                            ];
                         }
 
                         if(isset($_GET['id'])){
