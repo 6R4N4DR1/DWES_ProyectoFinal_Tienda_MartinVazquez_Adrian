@@ -76,6 +76,7 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    z-index: 0;;
 }
 
 #contenedor {
@@ -97,6 +98,11 @@ body {
     flex-wrap: nowrap;
 }
 
+#contenido main {
+    padding: 20px;
+    flex: 1;
+}
+
 /* Estilos para el header */
 #header {
     background-color: #8B0000;
@@ -107,6 +113,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     box-sizing: border-box;
+    position: relative;
+    z-index: 2;
 }
 
 #logo {
@@ -139,6 +147,7 @@ nav {
     background-color: #FFD700;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2;
 }
 
 nav ul {
@@ -169,8 +178,12 @@ nav ul li a:hover {
     background-color: #F8F9FA;
     padding: 20px;
     border-right: 2px solid #E9ECEF;
-    width: 25%;
+    width: 250px;
     box-sizing: border-box;
+    height: calc(100vh - 140px); /* Ajusta este valor según la altura del header y el footer */
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
 }
 
 #sidebar h3 {
@@ -243,12 +256,13 @@ nav ul li a:hover {
 /* Estilos para el contenido principal */
 main {
     padding: 20px;
-    width: 75%;
+    width: calc(100% - 270px); /* Ajusta este valor según el ancho del sidebar */
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
     flex: 1;
+    z-index: 1;
 }
 
 main h1 {
@@ -450,6 +464,8 @@ footer {
     position: relative;
     bottom: 0;
     left: 0;
+    margin-top: auto;
+    z-index: 2;
 }
 
 /* Estilos para el texto de administrador */
@@ -534,4 +550,28 @@ table td a.button-modificar:hover {
 .paginacion input.boton:hover {
     background-color: #FFD700;
     color: #8B0000;
+}
+
+/* Para Firefox */
+* {
+    scrollbar-width: thin; /* Ancho del scrollbar para Firefox */
+    scrollbar-color: #e47d7e #f1f1f1; /* Color del thumb y del track del scrollbar para Firefox */
+    /* Para WebKit browsers */
+    ::-webkit-scrollbar {
+        width: 12px; /* Ancho del scrollbar */
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Color de fondo del track del scrollbar */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #e47d7e; /* Color del thumb del scrollbar */
+        border-radius: 10px; /* Radio del borde del thumb del scrollbar */
+        border: 3px solid #f1f1f1; /* Borde del thumb del scrollbar */
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #d06b6c; /* Color del thumb del scrollbar al pasar el ratón */
+    }
 }
