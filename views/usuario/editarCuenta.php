@@ -1,9 +1,19 @@
 <?php
     use helpers\Utils;
     use models\Usuario;
+
+    // Obtén el ID del usuario de forma segura usando el operador null coalescing
+    $userId = $_SESSION['identity']['id'] ?? null;
+
+    // Si por alguna razón no se encuentra el ID, maneja el error de forma apropiada
+    if ($userId === null) {
+        echo '<h1>Tu cuenta fue editada correctamente, solamente tienes un token de edici&oacute;n por inicio. Vuelve a iniciar sesi&oacute;n para reiniciar tu token.</h1>';
+        echo '<a href="' . BASE_URL . '" class="boton boton-volver">Ir al inicio</a>';
+        exit();
+    }
         
     // Obtiene los datos del usuario actual
-    $usuario = Usuario::getUserPorId($_SESSION['identity']['id']);
+    $usuario = Usuario::getUserPorId($userId);
 ?>
 
 <!-- Título de la página -->

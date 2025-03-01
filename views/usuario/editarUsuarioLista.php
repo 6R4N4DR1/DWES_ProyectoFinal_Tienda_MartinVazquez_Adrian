@@ -65,6 +65,3 @@
 <!-- Elimina las sesiones de edicion y form_data -->
 <?php Utils::deleteSession('edicion'); ?>
 <?php Utils::deleteSession('form_data'); ?>
-
-<!-- Enlace para volver a la lista de usuarios -->
-<a href="<?=BASE_URL?>usuario/listaUsuarios" class="boton boton-volver">Volver a la lista</a>

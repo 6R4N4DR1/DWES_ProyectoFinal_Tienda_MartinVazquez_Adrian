@@ -139,13 +139,11 @@
                 // Recoge los datos del formulario
                 $email = isset($_POST['email']) ? $_POST['email'] : false;
                 $password = isset($_POST['password']) ? $_POST['password'] : false;
-                $recuerdame = isset($_POST['recuerdame']);
 
                 // Guarda los datos del formulario en la sesión
                 $_SESSION['form_data'] = [
                     'email' => $email,
-                    'password' => $password,
-                    'recuerdame' => $recuerdame
+                    'password' => $password
                 ];
 
                 // Validación de los datos del formulario
@@ -167,14 +165,8 @@
                             'rol' => $usuario->getRol()
                         ];
 
-                        // Gestiona la cookie de "Recuérdame"
-                        if($recuerdame){
-                            setcookie('recuerdame', $email, time() + 60*60*24*7);
-                        }else{
-                            if(isset($_COOKIE['recuerdame'])){
-                                setcookie('recuerdame', $email, time() - 1);
-                            }
-                        }
+                        // Gestiona la cookie de "cookieLogin"
+                        setcookie('cookieLogin', $email, time() + 60*60*24*7);
 
                         // Verifica si el usuario es administrador
                         if($usuario->getRol() === 'admin'){
@@ -208,8 +200,8 @@
             // Verifica si el usuario está autenticado
             Utils::isIdentity();
 
-            if(isset($_COOKIE['recuerdame'])){
-                $email = $_COOKIE['recuerdame'];
+            if(isset($_COOKIE['cookieLogin'])){
+                $email = $_COOKIE['cookieLogin'];
                 $usuario = Usuario::getUserPorEmail($email);
 
                 if($usuario){
@@ -246,9 +238,9 @@
             Utils::deleteSession('identity');
             Utils::deleteSession('admin');
 
-            // Elimina la cookie de "Recuérdame"
-            if(isset($_COOKIE['recuerdame'])){
-                setcookie('recuerdame', '', time() - 1);
+            // Elimina la cookie de "cookieLogin"
+            if(isset($_COOKIE['cookieLogin'])){
+                setcookie('cookieLogin', '', time() - 1);
             }
 
             if(ob_get_length()) { ob_clean(); }
@@ -352,16 +344,8 @@
                     'rol' => $rol
                 ];
 
-                $id = isset($_GET['id']) ? (int)$_GET['id'] : (int)$_SESSION['identity']['id'];
+                $id = isset($_GET['id']) ? $_GET['id'] : $_SESSION['identity']['id'];
                 $usuarioActual = Usuario::getUserPorId($id);
-
-                // Verifica si el usuario actual existe
-                if ($usuarioActual === null) {
-                    $_SESSION['edicion'] = 'failed_user_not_found';
-                    if(ob_get_length()) { ob_clean(); }
-                    header('Location:'.BASE_URL.'usuario/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
-                    exit();
-                }
 
                 // Verifica si los datos han cambiado
                 if($nombre != $usuarioActual->getNombre() || $apellidos != $usuarioActual->getApellidos() || $email != $usuarioActual->getEmail() || strlen($password) > 0 || $rol != $usuarioActual->getRol()){
@@ -413,6 +397,7 @@
                         // Actualiza los datos de la sesión si el usuario editado es el mismo que está autenticado
                         if($_SESSION['identity']['id'] == $id){
                             $_SESSION['identity'] = [
+                                'id' => $usuario->getId(),
                                 'nombre' => $usuario->getNombre(),
                                 'apellidos' => $usuario->getApellidos(),
                                 'email' => $usuario->getEmail(),
@@ -421,7 +406,6 @@
                         }
 
                         if(isset($_GET['id'])){
-                            Utils::deleteSession('edicion');
                             if(ob_get_length()) { ob_clean(); }
                             header('Location:'.BASE_URL.'usuario/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                             exit();
@@ -433,7 +417,6 @@
                     }else{
                         $_SESSION['edicion'] = 'failed';
                         if(isset($_GET['id'])){
-                            Utils::deleteSession('edicion');
                             if(ob_get_length()) { ob_clean(); }
                             header('Location:'.BASE_URL.'usuario/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                             exit();

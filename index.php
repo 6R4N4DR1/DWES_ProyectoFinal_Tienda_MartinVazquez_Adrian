@@ -18,17 +18,14 @@
     if (isset($_SESSION['identity']) && isset($_SESSION['identity']['id'])) {
         // Obtiene los datos del usuario por su ID
         $usuario = Usuario::getUserPorId($_SESSION['identity']['id']);
-
-        if ($usuario) {
-            // Actualiza la información del usuario en la sesión
-            $_SESSION['identity'] = [
-                'id' => $usuario->getId(),
-                'nombre' => $usuario->getNombre(),
-                'apellidos' => $usuario->getApellidos(),
-                'email' => $usuario->getEmail(),
-                'rol' => $usuario->getRol()
-            ];
-        }
+        // Actualiza la información del usuario en la sesión
+        $_SESSION['identity'] = [
+            'id' => $usuario->getId(),
+            'nombre' => $usuario->getNombre(),
+            'apellidos' => $usuario->getApellidos(),
+            'email' => $usuario->getEmail(),
+            'rol' => $usuario->getRol()
+        ];
 
         // Si el usuario es administrador, establece una sesión de administrador
         if($usuario->getRol() == 'admin'){

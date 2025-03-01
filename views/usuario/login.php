@@ -20,12 +20,6 @@
     <label for="password">Contrase&ntilde;a</label>
     <input type="password" name="password" required value="<?= isset($_SESSION['form_data']['password']) ? $_SESSION['form_data']['password'] : '' ?>">
 
-    <!-- Checkbox para recordar al usuario -->
-    <div class="contenedorRecordar">
-        <label for="recuerdame">Recordar este usuario</label>
-        <input type="checkbox" id="recuerdame" name="recuerdame" <?= (isset($_SESSION['form_data']) && isset($_SESSION['form_data']['remember']) && $_SESSION['form_data']['remember']) ? 'checked' : '' ?>>
-    </div>
-    
     <!-- Botón para enviar el formulario -->
     <input type="submit" value="Iniciar Sesi&oacute;n">
 </form>

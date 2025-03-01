@@ -5,5 +5,5 @@
 # No subo el guión del proyecto final
 Proyecto final 24-25 .docx.pdf
 
-# No subo la carpeta vendor generada por composer
+# No subo la carpeta vendor generada por composer, igual no me funciona
 /vendor/

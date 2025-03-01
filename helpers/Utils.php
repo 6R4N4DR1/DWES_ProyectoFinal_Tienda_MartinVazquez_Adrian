@@ -44,6 +44,7 @@
             if(!isset($_SESSION['identity'])){
                 // Redirige a la página principal
                 header('Location:'.BASE_URL);
+                exit();
             }
         }
 
@@ -57,6 +58,7 @@
             if(isset($_SESSION['identity'])){
                 // Redirige a la página principal
                 header('Location:'.BASE_URL);
+                exit();
             }
         }
 
@@ -70,6 +72,7 @@
             if(!isset($_SESSION['identity']) || $_SESSION['identity']['rol'] !== 'admin'){
                 // Redirige a la página principal
                 header('Location:'.BASE_URL);
+                exit();
             }
         }
     }

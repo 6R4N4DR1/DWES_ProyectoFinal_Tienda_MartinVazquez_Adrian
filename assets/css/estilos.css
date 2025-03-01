@@ -395,25 +395,6 @@ form input[type="password"]:focus {
     border-color: #8B0000;
 }
 
-form input[type="checkbox"] {
-    margin-left: 10px;
-    margin-right: 10px;
-    transform: scale(1.2);
-    cursor: pointer;
-}
-
-form label[for="recuerdame"] {
-    margin-top: 3px;
-    font-weight: normal;
-    cursor: pointer;
-}
-
-form .contenedorRecordar {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
 form label[for="rol"] {
     display: block;
 }
