@@ -497,7 +497,7 @@ table th {
     font-weight: bold;
 }
 
-table th:last-child {
+table th.editar-celda {
     background-color: #FFFFFF;
     border-top: #FFFFFF;
     border-right: #FFFFFF;

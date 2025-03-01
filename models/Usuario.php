@@ -17,7 +17,7 @@
         private ?string $rol;
         private BaseDatos $bd;
 
-        // Getters y Setters
+        /*Getter y Setter de las propiedades*/
 
         /**
          * Obtiene el ID del usuario.

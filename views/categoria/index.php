@@ -1,1 +1,0 @@
-<h1>Gestionar categor&iacute;as</h1>

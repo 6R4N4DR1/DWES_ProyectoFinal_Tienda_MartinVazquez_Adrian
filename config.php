@@ -12,8 +12,10 @@
     // URL base del proyecto
     define('BASE_URL', 'http://localhost/dashboard/DWES_ProyectoFinal_Tienda_MartinVazquez_Adrian/');
 
-    // Paginación de usuarios y productos
+    // Paginación de usuarios, categorías y productos
     define('USERS_PER_PAGE', 5); // Número de usuarios por página
+    define('CATEGORIES_PER_PAGE', 3); // Número de categorías por página
+    define('PRODUCTS_PER_PAGE', 6); // Número de productos por página
     
     /**
      * Nota:

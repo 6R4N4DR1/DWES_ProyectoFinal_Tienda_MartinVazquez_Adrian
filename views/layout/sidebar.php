@@ -37,7 +37,7 @@
                     <h3>Gestiones de administrativas</h3>
                     <a href="#" class="boton">Gestionar pedidos</a>
                     <a href="#" class="boton">Gestionar productos</a>
-                    <a href="<?=BASE_URL?>categoria/index" class="boton">Gestionar categor&iacute;as</a>
+                    <a href="<?=BASE_URL?>categoria/listaCategorias" class="boton">Gestionar categor&iacute;as</a>
                     
                     <!-- Separador horizontal -->
                     <div class="separator"></div>
@@ -47,7 +47,6 @@
                 <h3>P&aacute;ginas</h3>
                 <a href="#" class="boton">Mis pedidos</a>
                 <a href="#" class="boton">Productos</a>
-                <a href="#" class="boton">Categor&iacute;as</a>
             <?php endif; ?>
         </div>
     </aside>
