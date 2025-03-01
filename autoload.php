@@ -16,4 +16,9 @@
 
     // Registra la función de autocarga
     spl_autoload_register('controllers_autoload');
+
+    /**
+     * Nota:
+     * Este autoload fue creado manualmente con la ayuda de compañeros y GitHub Copilot porque Composer no generaba el autoload correcto que necesitaba y no sabía cómo usarlo correctamente sin que me diera errores.
+     */
 ?>

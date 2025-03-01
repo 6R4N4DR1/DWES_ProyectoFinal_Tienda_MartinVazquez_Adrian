@@ -423,7 +423,7 @@
                         if(isset($_GET['id'])){
                             Utils::deleteSession('edicion');
                             if(ob_get_length()) { ob_clean(); }
-                            header('Location:'.BASE_URL.'usuario/listaUsuarios');
+                            header('Location:'.BASE_URL.'usuario/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                             exit();
                         }else{
                             if(ob_get_length()) { ob_clean(); }
@@ -435,11 +435,11 @@
                         if(isset($_GET['id'])){
                             Utils::deleteSession('edicion');
                             if(ob_get_length()) { ob_clean(); }
-                            header('Location:'.BASE_URL.'usuario/listaUsuarios');
+                            header('Location:'.BASE_URL.'usuario/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                             exit();
                         }else{
                             if(ob_get_length()) { ob_clean(); }
-                            header('Location:'.BASE_URL.'usuario/edit&id='.$id);
+                            header('Location:'.BASE_URL.'usuario/edit');
                             exit();
                         }
                     }

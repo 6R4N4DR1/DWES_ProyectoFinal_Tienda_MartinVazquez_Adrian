@@ -62,3 +62,10 @@ if(isset($usuarios) && count($usuarios) > 0): ?>
         <strong class="error">No hay usuarios registrados</strong>
     <?php endif; ?>
 </div>
+
+<?php
+/**
+ * Nota:
+ * La paginación se ha realizado con sesiones debido a que Composer da error y no funciona como lo esperado.
+ */
+?>
