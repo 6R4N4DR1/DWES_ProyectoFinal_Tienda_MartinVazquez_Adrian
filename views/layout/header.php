@@ -24,21 +24,33 @@
         </header>
         <!-- Menú de navegación -->
         <nav>
-            <ul>
-                <li>
-                    <a href="<?=BASE_URL?>">
-                        Categor&iacute;a 1
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=BASE_URL?>">
-                        Categor&iacute;a 2
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=BASE_URL?>">
-                        Categor&iacute;a 3
-                    </a>
-                </li>
+            <ul class="nav-categorias">
+                <?php
+                    use controllers\CategoriaController;
+                    $paginaNav = isset($_GET['paginaNav']) ? (int)$_GET['paginaNav'] : 1;
+                    list($categoriasNav, $totalPaginasNav) = CategoriaController::getCategoriasParaNav($paginaNav);
+                ?>
+
+                <?php if($paginaNav > 1): ?>
+                    <li class="nav-flecha izquierda">
+                        <a href="<?=BASE_URL?>?paginaNav=<?=($paginaNav - 1)?>" class="flecha">&laquo;</a>
+                    </li>
+                <?php endif; ?>
+                
+                <div class="nav-categorias-centro">
+                    <?php foreach($categoriasNav as $categoria): ?>
+                        <li class="nav-categoria">
+                            <a href="<?=BASE_URL?>categoria/ver&id=<?=$categoria->getId()?>">
+                                <?=$categoria->getNombre()?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                </div>
+                
+                <?php if($paginaNav < $totalPaginasNav): ?>
+                    <li class="nav-flecha derecha">
+                        <a href="<?=BASE_URL?>?paginaNav=<?=($paginaNav + 1)?>" class="flecha">&raquo;</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </nav>

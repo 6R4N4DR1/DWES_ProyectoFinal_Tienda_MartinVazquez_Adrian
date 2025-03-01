@@ -8,6 +8,10 @@
     /**
      * Clase BaseDatos
      * Clase para gestionar la conexión y las operaciones con la base de datos.
+     * 
+     * Nota: Esta clase fue desarrollada con el consejo, ayuda y explicación de compañeros de clase, así como con conceptos de PDO gracias a la ayuda de AloncraftMC.
+     * Esto asegura que el patrón MVC funcione correctamente y que la estructura del código sea semánticamente correcta.
+     * Además, GitHub Copilot apoyó en las tabulaciones y realizó la mayor parte de esta clase.
      */
     class BaseDatos{
         private string $localhost;
@@ -79,7 +83,7 @@
         }
 
         /**
-         * Método getNumeroRegistros
+         * Método getNumRegistros
          * Obtiene el número de registros de la consulta.
          * 
          * @return int El número de registros de la consulta.
@@ -88,16 +92,7 @@
             return $this->consulta->rowCount();
         }
 
-        /**
-         * Método getUltimoId
-         * Obtiene el último ID insertado en la base de datos.
-         * 
-         * @return string El último ID insertado.
-         */
-        public function getLastId(): string{
-            return $this->conexion->lastInsertId();
-        }
-
+        
         // Métodos para cerrar la conexión con la base de datos
 
         /**

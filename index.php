@@ -5,7 +5,7 @@
     // Inicia la sesión
     session_start();
 
-    // Importa el controlador de errores
+    // Importa el controlador de errores y el modelo de Usuario
     use controllers\ErrorController;
     use models\Usuario;
 
@@ -32,11 +32,19 @@
             $_SESSION['admin'] = true;
         }
     }
+    /*
+    Nota: La linea de la 17 a la 34 son necesarias para el correcto funcionamiento de la gestión de usuarios y permisos en la aplicación.
+    Son fundamentales para mantener la sesión del usuario actualizada y para gestionar los permisos de administrador de manera adecuada.
+    Con esto el sistema verifica si el usuario ha iniciado sesión y si su ID está presente en la sesión, ademas de si tiene privilegios de administrador.
+    Asi no se pierde la sesión del usuario y se mantiene la información actualizada y no manejamos sesiones en un limbo, sino en tiempo real todo momento.
+    */
 
     // Carga las vistas de la cabecera y la barra lateral
     require_once 'views/layout/header.php';
     require_once 'views/layout/sidebar.php';
 
+    // Se utiliza la etiqueta <main> para definir el contenido principal de la página
+    // Esto ayuda a mejorar la accesibilidad y la semántica del HTML
     echo '<main>';
     
     // Verifica si se ha pasado un controlador por la URL

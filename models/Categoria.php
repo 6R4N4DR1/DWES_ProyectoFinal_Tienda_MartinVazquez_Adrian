@@ -51,7 +51,7 @@
                 $categoria = new Categoria();
                 $categoria->setId($registro["id"]);
                 $categoria->setNombre($registro["nombre"]);
-                array_push($categorias, $categoria);
+                $categorias[] = $categoria;
             }
             $bdClon->closeBD();
 

@@ -38,5 +38,14 @@
 
             require_once 'views/categoria/lista.php';
         }
+
+        public static function getCategoriasParaNav($pagina){
+            $categoriasPorPagina = CATEGORIES_PER_PAGE;
+            $categorias = Categoria::getAllCat();
+            $totalPaginas = max(1, ceil(count($categorias) / $categoriasPorPagina));
+            $categorias = array_slice($categorias, ($pagina - 1) * $categoriasPorPagina, $categoriasPorPagina);
+
+            return [$categorias, $totalPaginas];
+        }
     }
 ?>
