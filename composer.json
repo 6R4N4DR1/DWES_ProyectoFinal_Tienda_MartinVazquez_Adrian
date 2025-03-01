@@ -1,0 +1,18 @@
+{
+    "name": "adria/dwes_proyecto-final_tienda_martin-vazquez_adrian",
+    "autoload": {
+        "psr-4": {
+            "controllers\\": "controllers/",
+            "models\\": "models/",
+            "helpers\\": "helpers/",
+            "lib\\": "lib/"
+        }
+    },
+    "authors": [
+        {
+            "name": "GRANADRI",
+            "email": "adrianmv25@outlook.es"
+        }
+    ],
+    "require": {}
+}
