@@ -4,6 +4,15 @@
 
     // Obtiene los datos del usuario a editar por su ID
     $usuario = Usuario::getUserPorId($_GET['id']);
+
+    // Obtiene todos los usuarios
+    $usuarios = Usuario::getAllUsers();
+
+    // Encuentra la posición del usuario en la lista
+    $posicionUsuario = array_search($usuario, $usuarios);
+
+    // Calcula la página en la que se encuentra el usuario
+    $paginaUsuario = ceil(($posicionUsuario + 1) / USERS_PER_PAGE);
 ?>
 
 <!-- Título de la página con el nombre y apellidos del usuario -->
@@ -65,3 +74,6 @@
 <!-- Elimina las sesiones de edicion y form_data -->
 <?php Utils::deleteSession('edicion'); ?>
 <?php Utils::deleteSession('form_data'); ?>
+
+<!-- Volver a la pagina de la lista de usuarios donde se encuentra el usuario que se esta editando -->
+<a href="<?=BASE_URL?>usuario/listaUsuarios&pagina=<?=$paginaUsuario?>#<?=$usuario->getId()?>" class="boton boton-volver">Volver a la lista de usuarios</a>
