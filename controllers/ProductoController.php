@@ -232,66 +232,68 @@
 
         public function editarProducto(){
             Utils::isAdmin();
-
+        
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $precio = isset($_POST['precio']) ? $_POST['precio'] : null;
                 $stock = isset($_POST['stock']) ? (int)$_POST['stock'] : null;
                 $oferta = isset($_POST['oferta']) ? $_POST['oferta'] : null;
                 $fecha = date('Y-m-d'); // Fecha actual
-
+                $imagen = isset($_FILES['imagen']) ? $_FILES['imagen'] : null;
+        
                 $_SESSION['form_data'] = [
                     'precio' => $precio,
                     'stock' => $stock,
                     'oferta' => $oferta,
                     'fecha' => $fecha
                 ];
-
-                $id = isset($_GET['id']) ? $_GET['id'] : $_SESSION['producto']['id'];
+        
+                $id = isset($_GET['id']) ? $_GET['id'] : null;
                 $productoActual = Producto::getProdPorId($id);
                 
-                if($precio > 0 || $stock >= 0 || $oferta != $productoActual->getOferta()){
+                if($precio > 0 || $stock >= 0 || $oferta != $productoActual->getOferta() || $imagen){
                     if($precio > 0 && !preg_match("/^[0-9]+(\.[0-9]{1,2})?$/", $precio)){
-                        $_SESSION['producto'] = 'failed_precio';
+                        $_SESSION['edicion'] = 'failed_precio';
                         if(ob_get_length()) { ob_clean(); }
                         header('Location:'.BASE_URL.'producto/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                         exit();
                     }
         
-                    if($stock >= 0 || !preg_match("/^[0-9]+$/", $stock)){
-                        $_SESSION['producto'] = 'failed_stock';
+                    if($stock >= 0 && !preg_match("/^[0-9]+$/", $stock)){
+                        $_SESSION['edicion'] = 'failed_stock';
                         if(ob_get_length()) { ob_clean(); }
                         header('Location:'.BASE_URL.'producto/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                         exit();
                     }
         
                     if($oferta && !preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 ]+$/", $oferta)){
-                        $_SESSION['producto'] = 'failed_oferta';
+                        $_SESSION['edicion'] = 'failed_oferta';
                         if(ob_get_length()) { ob_clean(); }
                         header('Location:'.BASE_URL.'producto/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                         exit();
                     }
-
+        
+                    if($imagen && $imagen['name'] != ''){
+                        $nombreImagen = $imagen['name'];
+                        if(!is_dir('assets/images')){
+                            mkdir('assets/images', 0777, true);
+                        }
+                        move_uploaded_file($imagen['tmp_name'], 'assets/images/'.$nombreImagen);
+                    } else {
+                        $nombreImagen = $productoActual->getImagen();
+                    }
+        
                     $producto = new Producto();
                     $producto->setId($id);
                     $producto->setPrecio($precio);
                     $producto->setStock($stock);
                     $producto->setOferta($oferta);
-                    $update = $producto->actualizarBD();
-
-                    if($update){
+                    $producto->setFecha($fecha);
+                    $producto->setImagen($nombreImagen);
+        
+                    if($producto->actualizarBD()){
                         $_SESSION['edicion'] = 'complete';
                         Utils::deleteSession('form_data');
-
-                        if($_SESSION['producto']['id'] == $id){
-                            $_SESSION['producto'] = [
-                                'id' => $producto->getId(),
-                                'precio' => $producto->getPrecio(),
-                                'stock' => $producto->getStock(),
-                                'oferta' => $producto->getOferta(),
-                                'fecha' => $producto->getFecha()
-                            ];
-                        }
-
+        
                         if(isset($_GET['id'])){
                             if(ob_get_length()) { ob_clean(); }
                             header('Location:'.BASE_URL.'producto/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));

@@ -124,13 +124,14 @@
 
         public function actualizarBD(){
             $this->bd = new BaseDatos();
-
-            $sql = "UPDATE productos SET precio = :precio, stock = :stock, oferta = :oferta, fecha = :fecha WHERE id = :id";
+        
+            $sql = "UPDATE productos SET precio = :precio, stock = :stock, oferta = :oferta, fecha = :fecha, imagen = :imagen WHERE id = :id";
             $this->bd->ejecutarConsulta($sql, [
                 ':precio' => $this->precio,
                 ':stock' => $this->stock,
                 ':oferta' => $this->oferta,
                 ':fecha' => $this->fecha,
+                ':imagen' => $this->imagen,
                 ':id' => $this->id
             ]);
             $salidaBD = $this->bd->getNumRegistros() == 1;

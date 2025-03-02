@@ -28,7 +28,7 @@
     <strong class="fallido">Fallo encontrado, no se puedo editar los datos del producto. Prueba de nuevo</strong>
 <?php endif; ?>
 
-<form action="<?=BASE_URL?>producto/editarProducto&id=<?=$_GET['id']?>" method="POST">
+<form action="<?=BASE_URL?>producto/editarProducto&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data">
     <!-- Campo para el precio del producto -->
     <label for="precio">Precio</label>
     <input type="text" name="precio" value="<?= isset($_SESSION['form_data']['precio']) ? $_SESSION['form_data']['precio'] : $producto->getPrecio() ?>">
@@ -48,6 +48,13 @@
     <input type="text" name="oferta" value="<?= isset($_SESSION['form_data']['oferta']) ? $_SESSION['form_data']['oferta'] : $producto->getOferta() ?>">
     <?php if(isset($_SESSION['edicion']) && $_SESSION['edicion'] == 'failed_oferta'): ?>
         <strong class="error">Oferta no válida. Solo se permiten letras y números.</strong>
+    <?php endif; ?>
+
+    <!-- Campo para la imagen del producto -->
+    <label for="imagen">Imagen</label>
+    <input type="file" name="imagen">
+    <?php if(isset($_SESSION['edicion']) && $_SESSION['edicion'] == 'failed_imagen'): ?>
+        <strong class="error">Imagen no válida. Solo se permiten archivos de imagen.</strong>
     <?php endif; ?>
 
     <!-- Botón para enviar el formulario -->
