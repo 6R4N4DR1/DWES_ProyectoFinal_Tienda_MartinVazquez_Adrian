@@ -40,9 +40,7 @@
                 <div class="nav-categorias-centro">
                     <?php foreach($categoriasNav as $categoria): ?>
                         <li class="nav-categoria">
-                            <a href="<?=BASE_URL?>categoria/ver&id=<?=$categoria->getId()?>">
-                                <?=$categoria->getNombre()?>
-                            </a>
+                            <a href="<?=BASE_URL?>producto/productosPorCategoria&id=<?=$categoria->getId()?>"><?=$categoria->getNombre()?></a>
                         </li>
                     <?php endforeach; ?>
                 </div>

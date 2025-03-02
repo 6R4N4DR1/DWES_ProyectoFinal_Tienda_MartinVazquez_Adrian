@@ -1,9 +1,9 @@
-<h1>Productos destacados</h1>
+<h1>Todos los productos</h1>
 
-<!-- Contenedor de productos destacados -->
+<!-- Contenedor de productos -->
 <div class="productos">
     <?php foreach($productos as $producto): ?>
-        <!-- Producto destacado -->
+        <!-- Producto -->
         <div class="producto">
             <!-- Imagen del producto -->
             <?php if($producto->getImagen()): ?>

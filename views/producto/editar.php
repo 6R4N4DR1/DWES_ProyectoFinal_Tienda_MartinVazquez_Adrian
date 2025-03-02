@@ -28,7 +28,7 @@
     <strong class="fallido">Fallo encontrado, no se puedo editar los datos del producto. Prueba de nuevo</strong>
 <?php endif; ?>
 
-<form action="<?=BASE_URL?>producto/editarProducto&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data">
+<form action="<?=BASE_URL?>producto/editarProducto&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data" class="formulario-producto">
     <!-- Campo para el precio del producto -->
     <label for="precio">Precio</label>
     <input type="text" name="precio" value="<?= isset($_SESSION['form_data']['precio']) ? $_SESSION['form_data']['precio'] : $producto->getPrecio() ?>">
@@ -58,7 +58,7 @@
     <?php endif; ?>
 
     <!-- Botón para enviar el formulario -->
-    <input type="submit" value="Guardar cambios">
+    <input type="submit" value="Guardar cambios" class="boton boton-enviar">
 </form>
 
 <!-- Elimina las sesiones de edicion y form_data -->

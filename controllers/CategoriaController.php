@@ -1,9 +1,8 @@
 <?php
     namespace controllers;
 
-    // Importa los modelos de Categoria y Producto, y las utilidades
+    // Importa los modelos de Categoria, y las utilidades
     use models\Categoria;
-    use models\Producto;
     use helpers\Utils;
 
     /**

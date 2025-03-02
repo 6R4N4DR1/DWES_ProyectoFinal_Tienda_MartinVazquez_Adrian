@@ -202,5 +202,55 @@
 
             return null;
         }
+
+        public static function getPrimerosProductos(int $limite){
+            $bdClon = new BaseDatos();
+            $sql = "SELECT * FROM productos LIMIT $limite";
+            $bdClon->ejecutarConsulta($sql);
+            $registros = $bdClon->getRegistros();
+            $productos = [];
+        
+            foreach($registros as $registro){
+                $producto = new Producto();
+                $producto->setId($registro["id"]);
+                $producto->setCategoriaId($registro["categoria_id"]);
+                $producto->setNombre($registro["nombre"]);
+                $producto->setDescripcion($registro["descripcion"]);
+                $producto->setPrecio($registro["precio"]);
+                $producto->setStock($registro["stock"]);
+                $producto->setOferta($registro["oferta"]);
+                $producto->setFecha($registro["fecha"]);
+                $producto->setImagen($registro["imagen"]);
+                $productos[] = $producto;
+            }
+            $bdClon->closeBD();
+        
+            return $productos;
+        }
+
+        public static function getProdPorCategoria(int $categoria_id){
+            $bdClon = new BaseDatos();
+            $sql = "SELECT * FROM productos WHERE categoria_id = :categoria_id";
+            $bdClon->ejecutarConsulta($sql, [':categoria_id' => $categoria_id]);
+            $registros = $bdClon->getRegistros();
+            $productos = [];
+        
+            foreach($registros as $registro){
+                $producto = new Producto();
+                $producto->setId($registro["id"]);
+                $producto->setCategoriaId($registro["categoria_id"]);
+                $producto->setNombre($registro["nombre"]);
+                $producto->setDescripcion($registro["descripcion"]);
+                $producto->setPrecio($registro["precio"]);
+                $producto->setStock($registro["stock"]);
+                $producto->setOferta($registro["oferta"]);
+                $producto->setFecha($registro["fecha"]);
+                $producto->setImagen($registro["imagen"]);
+                $productos[] = $producto;
+            }
+            $bdClon->closeBD();
+        
+            return $productos;
+        }
     }
 ?>

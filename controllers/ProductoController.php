@@ -17,7 +17,13 @@
          * Carga la vista de productos destacados.
          */
         public function destacados(){
+            $productos = Producto::getPrimerosProductos(6);
             require_once 'views/producto/destacados.php';
+        }
+
+        public function todosLosProductos(){
+            $productos = Producto::getAllProd();
+            require_once 'views/producto/todosLosProductos.php';
         }
 
         /**
@@ -314,6 +320,26 @@
                 header('Location:'.BASE_URL.'producto/edit'.(isset($_GET['id']) ? "&id=" . $_GET['id'] : ""));
                 exit();
             }else{
+                if(ob_get_length()) { ob_clean(); }
+                header('Location:'.BASE_URL);
+                exit();
+            }
+        }
+
+        public function productosPorCategoria(){
+            if(isset($_GET['id'])){
+                $categoria_id = $_GET['id'];
+                $productos = Producto::getProdPorCategoria($categoria_id);
+        
+                // Obtener todas las categorías
+                $categorias = Categoria::getAllCat();
+                $categoriasMap = [];
+                foreach ($categorias as $categoria) {
+                    $categoriasMap[$categoria->getId()] = $categoria->getNombre();
+                }
+        
+                require_once 'views/producto/productosPorCategoria.php';
+            } else {
                 if(ob_get_length()) { ob_clean(); }
                 header('Location:'.BASE_URL);
                 exit();

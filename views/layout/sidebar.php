@@ -46,7 +46,7 @@
                 <!-- Enlaces a otras páginas -->
                 <h3>P&aacute;ginas</h3>
                 <a href="#" class="boton">Mis pedidos</a>
-                <a href="#" class="boton">Productos</a>
+                <a href="<?=BASE_URL?>producto/todosLosProductos" class="boton">Productos</a>
             <?php endif; ?>
         </div>
     </aside>

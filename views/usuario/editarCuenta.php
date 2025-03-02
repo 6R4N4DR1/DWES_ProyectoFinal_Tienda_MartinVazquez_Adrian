@@ -72,7 +72,7 @@
     <?php endif; ?>
 
     <!-- Botón para enviar el formulario -->
-    <input type="submit" value="Guardar cambios">
+    <input type="submit" value="Guardar cambios" class="boton boton-enviar">
 </form>
 
 <!-- Elimina las sesiones de edicion y form_data -->
