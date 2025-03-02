@@ -2,16 +2,16 @@
     use helpers\Utils;
     use models\Producto;
 
-    // Obtiene los datos del usuario a editar por su ID
+    // Obtiene los datos del producto a editar por su ID
     $producto = Producto::getProdPorId($_GET['id']);
 
-    // Obtiene todos los usuarios
+    // Obtiene todos los productos
     $productos = Producto::getAllProd();
 
-    // Encuentra la posición del usuario en la lista
+    // Encuentra la posición del producto en la lista
     $posicionProducto = array_search($producto, $productos);
 
-    // Calcula la página en la que se encuentra el usuario
+    // Calcula la página en la que se encuentra el producto
     $paginaProducto = ceil(($posicionProducto + 1) / PRODUCTS_PER_PAGE);
 ?>
 
@@ -33,6 +33,7 @@
     <label for="precio">Precio</label>
     <input type="text" name="precio" value="<?= isset($_SESSION['form_data']['precio']) ? $_SESSION['form_data']['precio'] : $producto->getPrecio() ?>">
     <?php if(isset($_SESSION['edicion']) && $_SESSION['edicion'] == 'failed_precio'): ?>
+        <!-- Mensaje de error si el precio no es válido -->
         <strong class="error">Precio no válido. Debe ser un número con hasta dos decimales.</strong>
     <?php endif; ?>
 
@@ -40,6 +41,7 @@
     <label for="stock">Stock</label>
     <input type="text" name="stock" value="<?= isset($_SESSION['form_data']['stock']) ? $_SESSION['form_data']['stock'] : $producto->getStock() ?>">
     <?php if(isset($_SESSION['edicion']) && $_SESSION['edicion'] == 'failed_stock'): ?>
+        <!-- Mensaje de error si el stock no es válido -->
         <strong class="error">Stock no válido. Debe ser un número.</strong>
     <?php endif; ?>
 
@@ -47,6 +49,7 @@
     <label for="oferta">Oferta</label>
     <input type="text" name="oferta" value="<?= isset($_SESSION['form_data']['oferta']) ? $_SESSION['form_data']['oferta'] : $producto->getOferta() ?>">
     <?php if(isset($_SESSION['edicion']) && $_SESSION['edicion'] == 'failed_oferta'): ?>
+        <!-- Mensaje de error si la oferta no es válida -->
         <strong class="error">Oferta no válida. Solo se permiten letras y números.</strong>
     <?php endif; ?>
 
@@ -54,6 +57,7 @@
     <label for="imagen">Imagen</label>
     <input type="file" name="imagen">
     <?php if(isset($_SESSION['edicion']) && $_SESSION['edicion'] == 'failed_imagen'): ?>
+        <!-- Mensaje de error si la imagen no es válida -->
         <strong class="error">Imagen no válida. Solo se permiten archivos de imagen.</strong>
     <?php endif; ?>
 
@@ -65,5 +69,5 @@
 <?php Utils::deleteSession('edicion'); ?>
 <?php Utils::deleteSession('form_data'); ?>
 
-<!-- Volver a la pagina de la lista de usuarios donde se encuentra el usuario que se esta editando -->
+<!-- Volver a la pagina de la lista de productos donde se encuentra el producto que se está editando -->
 <a href="<?=BASE_URL?>producto/listaProductos&pagina=<?=$paginaProducto?>#<?=$producto->getId()?>" class="boton boton-volver">Volver a la lista de productos</a>

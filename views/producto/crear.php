@@ -20,12 +20,14 @@
     <label for="categoria_id">Categoría</label>
     <select name="categoria_id" required>
         <?php foreach($categorias as $categoria): ?>
+            <!-- Opción de categoría en el select -->
             <option value="<?= $categoria->getId(); ?>" <?= isset($_SESSION['form_data']['categoria_id']) && $_SESSION['form_data']['categoria_id'] == $categoria->getId() ? 'selected' : ''; ?>>
                 <?= $categoria->getNombre(); ?>
             </option>
         <?php endforeach; ?>
     </select>
     <?php if(isset($_SESSION['producto']) && $_SESSION['producto'] == 'failed_categoria_id'): ?>
+        <!-- Mensaje de error si la categoría no es válida -->
         <strong class="error">Categoría no válida. Debe ser un número.</strong>
     <?php endif; ?>
 
@@ -33,6 +35,7 @@
     <label for="nombre">Nombre</label>
     <input type="text" name="nombre" required value="<?= isset($_SESSION['form_data']['nombre']) ? $_SESSION['form_data']['nombre'] : '' ?>">
     <?php if(isset($_SESSION['producto']) && $_SESSION['producto'] == 'failed_nombre'): ?>
+        <!-- Mensaje de error si el nombre no es válido -->
         <strong class="error">Nombre no válido. Prueba de nuevo.</strong>
     <?php endif; ?>
 
@@ -44,6 +47,7 @@
     <label for="precio">Precio</label>
     <input type="text" name="precio" required value="<?= isset($_SESSION['form_data']['precio']) ? $_SESSION['form_data']['precio'] : '' ?>">
     <?php if(isset($_SESSION['producto']) && $_SESSION['producto'] == 'failed_precio'): ?>
+        <!-- Mensaje de error si el precio no es válido -->
         <strong class="error">Precio no válido. Debe ser un número con hasta dos decimales.</strong>
     <?php endif; ?>
 
@@ -51,6 +55,7 @@
     <label for="stock">Stock</label>
     <input type="text" name="stock" required value="<?= isset($_SESSION['form_data']['stock']) ? $_SESSION['form_data']['stock'] : '' ?>">
     <?php if(isset($_SESSION['producto']) && $_SESSION['producto'] == 'failed_stock'): ?>
+        <!-- Mensaje de error si el stock no es válido -->
         <strong class="error">Stock no válido. Debe ser un número.</strong>
     <?php endif; ?>
 
@@ -58,6 +63,7 @@
     <label for="oferta">Oferta</label>
     <input type="text" name="oferta" required value="<?= isset($_SESSION['form_data']['oferta']) ? $_SESSION['form_data']['oferta'] : '' ?>">
     <?php if(isset($_SESSION['producto']) && $_SESSION['producto'] == 'failed_oferta'): ?>
+        <!-- Mensaje de error si la oferta no es válida -->
         <strong class="error">Oferta no válida. Solo se permiten letras y números.</strong>
     <?php endif; ?>
 

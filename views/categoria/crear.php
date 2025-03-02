@@ -30,7 +30,7 @@
     <input type="submit" value="Crear categor&iacute;a">
 </form>
 
-<!-- Elimina las sesiones de register y form_data -->
+<!-- Elimina las sesiones de categoria y form_data -->
 <?php Utils::deleteSession('categoria'); ?>
 <?php Utils::deleteSession('form_data'); ?>
 

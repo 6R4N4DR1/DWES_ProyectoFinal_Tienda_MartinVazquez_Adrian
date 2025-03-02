@@ -26,12 +26,16 @@
         <nav>
             <ul class="nav-categorias">
                 <?php
+                    // Importa el controlador de categorías
                     use controllers\CategoriaController;
+                    // Obtiene la página actual de la navegación
                     $paginaNav = isset($_GET['paginaNav']) ? (int)$_GET['paginaNav'] : 1;
+                    // Obtiene las categorías para la navegación y el total de páginas
                     list($categoriasNav, $totalPaginasNav) = CategoriaController::getCategoriasParaNav($paginaNav);
                 ?>
 
                 <?php if($paginaNav > 1): ?>
+                    <!-- Muestra la flecha de navegación a la izquierda si no estamos en la primera página -->
                     <li class="nav-flecha izquierda">
                         <a href="<?=BASE_URL?>?paginaNav=<?=($paginaNav - 1)?>" class="flecha">&laquo;</a>
                     </li>
@@ -39,6 +43,7 @@
                 
                 <div class="nav-categorias-centro">
                     <?php foreach($categoriasNav as $categoria): ?>
+                        <!-- Muestra cada categoría como un enlace -->
                         <li class="nav-categoria">
                             <a href="<?=BASE_URL?>producto/productosPorCategoria&id=<?=$categoria->getId()?>"><?=$categoria->getNombre()?></a>
                         </li>
@@ -46,6 +51,7 @@
                 </div>
                 
                 <?php if($paginaNav < $totalPaginasNav): ?>
+                    <!-- Muestra la flecha de navegación a la derecha si no estamos en la última página -->
                     <li class="nav-flecha derecha">
                         <a href="<?=BASE_URL?>?paginaNav=<?=($paginaNav + 1)?>" class="flecha">&raquo;</a>
                     </li>

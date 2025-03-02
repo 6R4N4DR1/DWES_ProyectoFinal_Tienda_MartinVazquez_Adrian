@@ -1,8 +1,10 @@
 <h1>Lista de productos</h1>
 
+<!-- Enlace para crear un nuevo producto -->
 <a href="<?=BASE_URL?>producto/crearProducto" class="boton">Crear un nuevo producto</a>
 
 <?php if(count($productos) > 0): ?>
+    <!-- Tabla para mostrar los productos -->
     <table>
         <thead>
             <tr>
@@ -15,6 +17,8 @@
                 <th>Oferta</th>
                 <th>Fecha</th>
                 <th>Imagen</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
             </tr>
         </thead>
         <tbody>    
@@ -31,8 +35,10 @@
                     <td><?=$producto->getFecha();?></td>
                     <td>
                         <?php if($producto->getImagen()): ?>
+                            <!-- Muestra la imagen del producto si existe -->
                             <img src="<?=BASE_URL?>assets/images/<?=$producto->getImagen();?>" alt="<?=$producto->getNombre();?>" width="50">
                         <?php else: ?>
+                            <!-- Muestra el nombre del producto si no hay imagen -->
                             <span><?=$producto->getNombre();?></span>
                         <?php endif; ?>
                     </td>

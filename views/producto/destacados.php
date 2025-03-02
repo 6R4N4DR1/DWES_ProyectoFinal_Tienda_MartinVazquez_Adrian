@@ -7,8 +7,10 @@
         <div class="producto">
             <!-- Imagen del producto -->
             <?php if($producto->getImagen()): ?>
+                <!-- Muestra la imagen del producto si existe -->
                 <img src="<?=BASE_URL?>assets/images/<?=$producto->getImagen();?>" alt="<?=$producto->getNombre();?>">
             <?php else: ?>
+                <!-- Muestra una imagen por defecto si no existe una imagen del producto -->
                 <img src="<?=BASE_URL?>assets/images/default.png" alt="<?=$producto->getNombre();?>">
             <?php endif; ?>
             <!-- Nombre del producto -->

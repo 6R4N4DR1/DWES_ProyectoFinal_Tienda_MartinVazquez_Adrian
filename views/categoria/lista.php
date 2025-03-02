@@ -1,8 +1,10 @@
 <h1>Lista de categori&aacute;s</h1>
 
+<!-- Enlace para crear una nueva categoría -->
 <a href="<?=BASE_URL?>categoria/crearCategoria" class="boton">Crear una nueva categor&iacute;a</a>
 
 <?php if(count($categorias) > 0): ?>
+    <!-- Tabla para mostrar las categorías -->
     <table>
         <thead>
             <tr>
@@ -13,7 +15,7 @@
         </thead>
         <tbody>    
             <?php 
-            // Itera sobre cada usuario y muestra sus datos en una fila de la tabla
+            // Itera sobre cada categoría y muestra sus datos en una fila de la tabla
             foreach($categorias as $categoria): ?>
                 <tr id="<?=$categoria->getId();?>">
                     <td><?=$categoria->getId();?></td>
@@ -23,13 +25,13 @@
         </tbody>
     </table>
 <?php else: ?>
-    <!-- Mensaje de error si no hay usuarios registrados -->
+    <!-- Mensaje de error si no hay categorías registradas -->
     <strong class="error">No hay categor&iacute;as registradas</strong>
 <?php endif; ?>
 
 <div class="paginacion">
     <?php 
-    // Verifica si hay más de una página de usuarios
+    // Verifica si hay más de una página de categorías
     if($totalPaginas > 1): ?>
         <?php 
         // Muestra el botón "Anterior" si no estamos en la primera página
