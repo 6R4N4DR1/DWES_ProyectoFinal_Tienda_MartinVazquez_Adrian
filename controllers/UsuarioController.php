@@ -97,9 +97,10 @@
 
                     $usuario->setPassword(($password));
                     $usuario->setRol($rol);
+                    $save = $usuario->guardar();
 
                     // Guarda el usuario en la base de datos
-                    if($usuario->guardar()){
+                    if($save){
                         Utils::deleteSession('form_data');
                         $_SESSION['register'] = 'complete';
                         if(isset($_SESSION['admin'])){
@@ -389,8 +390,9 @@
                     $usuario->setEmail($email);
                     $usuario->setPassword($password);
                     $usuario->setRol($rol);
+                    $update = $usuario->actualizarBD();
 
-                    if($usuario->actualizarBD()) {
+                    if($update) {
                         $_SESSION['edicion'] = 'complete';
                         Utils::deleteSession('form_data');
 

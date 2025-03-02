@@ -32,7 +32,7 @@
 
         public function guardar(){
             $this->bd = new BaseDatos();
-            $sql = "INSERT INTO categorias (nombre) VALUES (null, :nombre)";
+            $sql = "INSERT INTO categorias (nombre) VALUES (:nombre)";
             $this->bd->ejecutarConsulta($sql, [":nombre" => $this->nombre]);
 
             $salidaBD = $this->bd->getNumRegistros() == 1;
@@ -56,6 +56,17 @@
             $bdClon->closeBD();
 
             return $categorias;
+        }
+
+        public function existeCategoria() {
+            $this->bd = new BaseDatos();
+            $sql = "SELECT id FROM categorias WHERE nombre = :nombre";
+            $this->bd->ejecutarConsulta($sql, [":nombre" => $this->nombre]);
+
+            $existe = $this->bd->getNumRegistros() > 0;
+            $this->bd->closeBD();
+
+            return $existe;
         }
     }
 ?>

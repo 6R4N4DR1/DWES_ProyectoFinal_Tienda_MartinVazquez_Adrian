@@ -11,6 +11,71 @@
      * Controlador para gestionar las acciones relacionadas con las categorías.
      */
     class CategoriaController{
+        public function save(){
+            Utils::isAdmin(); // Verifica si el usuario es administrador
+
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
+
+                $_SESSION['form_data']['nombre'] = $nombre;
+
+                if($nombre){
+                    if(!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/", $nombre)){
+                        $_SESSION['register'] = 'failed_nombre';
+                        if(ob_get_length()) { ob_clean(); }
+                        header('Location:'.BASE_URL.'categoria/crearCategoria');
+                        exit();
+                    }
+                    
+                    $categoria = new Categoria();
+                    $categoria->setNombre($nombre);
+
+                    if($categoria->existeCategoria()){
+                        $_SESSION['categoria'] = 'failed_existe';
+                        if(ob_get_length()) { ob_clean(); }
+                        header('Location:'.BASE_URL.'categoria/crearCategoria');
+                        exit();
+                    }
+
+                    $save = $categoria->guardar();
+
+                    if($save){
+                        Utils::deleteSession('form_data');
+                        $_SESSION['categoria'] = 'complete';
+                        if(ob_get_length()) { ob_clean(); }
+                        header('Location:'.BASE_URL.'categoria/crearCategoria');
+                        exit();
+                    }else{
+                        $_SESSION['categoria'] = 'failed';
+                        if(ob_get_length()) { ob_clean(); }
+                        header('Location:'.BASE_URL.'categoria/crearCategoria');
+                        exit();
+
+                    }
+                }else{
+                    $_SESSION['categoria'] = 'failed';
+                    if(ob_get_length()) { ob_clean(); }
+                    header('Location:'.BASE_URL.'categoria/crearCategoria');
+                    exit();
+                }
+            }else{
+                if(ob_get_length()) { ob_clean(); }
+                header('Location:'.BASE_URL);
+                exit();
+            }
+        }
+
+        public function crearCategoria(){
+            Utils::isAdmin(); // Verifica si el usuario es administrador
+
+            // Obtener el total de páginas de categorías
+            $categorias = Categoria::getAllCat();
+            $categoriasPorPagina = CATEGORIES_PER_PAGE;
+            $totalPaginas = max(1, ceil(count($categorias) / $categoriasPorPagina));
+
+            require_once 'views/categoria/crear.php';
+        }
+
         public function listaCategorias(){
             Utils::isAdmin(); // Verifica si el usuario es administrador
 
