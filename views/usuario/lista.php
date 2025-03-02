@@ -13,7 +13,6 @@ if(isset($usuarios) && count($usuarios) > 0): ?>
                 <th>Apellidos</th>
                 <th>Email</th>
                 <th>Rol</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>    
@@ -58,8 +57,8 @@ if(isset($usuarios) && count($usuarios) > 0): ?>
             </a>
         <?php endif; ?>
     <?php else: ?>
-        <!-- Mensaje de error si no hay usuarios registrados -->
-        <strong class="error">No hay usuarios registrados</strong>
+        <!-- Enlace para volver al inicio -->
+        <a href="<?=BASE_URL?>" class="boton boton-volver">Ir al inicio</a>
     <?php endif; ?>
 </div>
 

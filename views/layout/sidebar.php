@@ -36,7 +36,7 @@
                     <!-- Enlaces de gestión para el administrador -->
                     <h3>Gestiones de administrativas</h3>
                     <a href="#" class="boton">Gestionar pedidos</a>
-                    <a href="#" class="boton">Gestionar productos</a>
+                    <a href="<?=BASE_URL?>producto/listaProductos" class="boton">Gestionar productos</a>
                     <a href="<?=BASE_URL?>categoria/listaCategorias" class="boton">Gestionar categor&iacute;as</a>
                     
                     <!-- Separador horizontal -->

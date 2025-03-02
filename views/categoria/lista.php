@@ -48,8 +48,8 @@
             </a>
         <?php endif; ?>
     <?php else: ?>
-        <!-- Mensaje de error si no hay usuarios registrados -->
-        <strong class="error">No hay categor&iacute;as registradas</strong>
+        <!-- Enlace para volver al inicio -->
+        <a href="<?=BASE_URL?>" class="boton boton-volver">Ir al inicio</a>
     <?php endif; ?>
 </div>
 
