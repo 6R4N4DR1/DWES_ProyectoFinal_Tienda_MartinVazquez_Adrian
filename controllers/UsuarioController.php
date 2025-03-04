@@ -29,7 +29,7 @@
         public function save(){
             // Verifica si el usuario no está autenticado
             Utils::isNotIdentity();
-
+        
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 // Recoge los datos del formulario
                 $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
@@ -37,7 +37,7 @@
                 $email = isset($_POST['email']) ? $_POST['email'] : false;
                 $password = isset($_POST['password']) ? $_POST['password'] : false;
                 $rol = isset($_POST['rol']) ? $_POST['rol'] : 'user';
-
+        
                 // Guarda los datos del formulario en la sesión
                 $_SESSION['form_data'] = [
                     'nombre' => $nombre,
@@ -46,7 +46,7 @@
                     'password' => $password,
                     'rol' => $rol
                 ];
-
+        
                 // Validación de los datos del formulario
                 if($nombre && $apellidos && $email && $password){
                     // Validación del nombre
@@ -56,7 +56,7 @@
                         header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
-
+        
                     // Validación de los apellidos
                     if(!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/", $apellidos)){
                         $_SESSION['register'] = 'failed_apellidos';
@@ -64,7 +64,7 @@
                         header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
-
+        
                     // Validación del email
                     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                         $_SESSION['register'] = 'failed_email';
@@ -72,7 +72,7 @@
                         header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
-
+        
                     // Validación de la contraseña
                     if(!preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/', $password)){
                         $_SESSION['register'] = 'failed_password';
@@ -80,13 +80,13 @@
                         header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
-
+        
                     // Crea un nuevo usuario y guarda los datos en la base de datos
                     $usuario = new Usuario();
                     $usuario->setNombre($nombre);
                     $usuario->setApellidos($apellidos);
                     $usuario->setEmail($email);
-
+        
                     // Verifica si el email ya existe
                     if($usuario->existeEmail()){
                         $_SESSION['register'] = 'failed_email_duplicado';
@@ -94,11 +94,11 @@
                         header('Location:'.BASE_URL.'usuario/'.(isset($_SESSION['admin']) ? 'crearUsuario' : 'register'));
                         exit();
                     }
-
+        
                     $usuario->setPassword(($password));
                     $usuario->setRol($rol);
                     $save = $usuario->guardar();
-
+        
                     // Guarda el usuario en la base de datos
                     if($save){
                         Utils::deleteSession('form_data');
